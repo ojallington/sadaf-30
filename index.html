@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Sadaf Turns Thirty</title>
-<meta name="description" content="One day in three parts, on one of two dates, with exactly one secret. 26 or 27 September 2026, Rotterdam and Schiedam. Purple and gold, and I mean it.">
+<meta name="description" content="One day in three parts, on one of two dates, and all of it a surprise. 26 or 27 September 2026, Rotterdam and Schiedam. Purple and gold, and I mean it.">
 
 <!-- link preview (WhatsApp, Signal, iMessage) -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Sadaf turns thirty">
-<meta property="og:description" content="26 or 27 September 2026 — a poll will decide. A house to dress, an afternoon at Blijdorp, thirty candles on one cake. Dress code: purple and gold, and I mean it.">
+<meta property="og:description" content="26 or 27 September 2026 — a poll will decide. A house to dress, a surprise at Blijdorp, thirty candles on one cake. Dress code: purple and gold, and I mean it. Say nothing.">
 <meta property="og:url" content="https://ojallington.github.io/sadaf-30/">
 <meta property="og:image" content="https://ojallington.github.io/sadaf-30/og.png">
 <meta property="og:image:width" content="1200">
@@ -91,12 +91,13 @@ button{font:inherit; color:inherit}
   -webkit-mask-image:radial-gradient(circle at 30% 40%, #000 0 55%, rgba(0,0,0,.72) 56% 100%);
           mask-image:radial-gradient(circle at 30% 40%, #000 0 55%, rgba(0,0,0,.72) 56% 100%);
 }
-.stamp--big{
-  position:absolute; z-index:3; right:clamp(-6px,1vw,8px); top:-26px;
-  font-size:clamp(15px,3.4vw,24px); padding:.5em .8em .42em; letter-spacing:.14em;
-  transform:rotate(-9deg); border-width:3px;
+.stamp--card{
+  position:absolute; z-index:3; right:-6px; top:-14px;
+  font-size:clamp(12px,2.6vw,16px); padding:.5em .8em .42em; letter-spacing:.14em;
+  transform:rotate(-8deg); border-width:3px;
   box-shadow:inset 0 0 0 3px var(--sedef), inset 0 0 0 5px currentColor, 0 12px 28px -14px rgba(0,0,0,.8);
 }
+.dcard:nth-child(2) .stamp--card{transform:rotate(6deg); right:auto; left:-6px}
 .is-decided .stamp{color:var(--sabz)}
 
 .kicker{
@@ -475,7 +476,6 @@ textarea.input{resize:vertical; min-height:78px}
   .trio{grid-template-columns:1fr}
   .trio .opt{flex-direction:row; text-align:left}
   .trio .opt__d{margin-top:3px}
-  .stamp--big{top:-18px; right:6px}
   .niche{width:84px; height:110px; margin-top:-58px}
   .niche svg{width:56px; height:56px; margin-top:30px}
   .swatches{grid-template-columns:repeat(3,1fr)}
@@ -541,7 +541,7 @@ textarea.input{resize:vertical; min-height:78px}
     </div>
 
     <div class="taq">
-      <canvas id="inlay" aria-label="A glazed tile dome seen from below, the name Sadaf set into the vault, a nazar bead for an oculus"></canvas>
+      <canvas id="inlay" aria-label="A glazed tile dome seen from below, the name Sadaf on an inscription band, a nazar bead for an oculus"></canvas>
       <svg class="taq__frame" viewBox="0 0 1 1" preserveAspectRatio="none" aria-hidden="true">
         <g fill="none" stroke="#D9A441">
           <path d="M0,1 L0,0.58 C0,0.30 0.38,0.12 0.5,0 C0.62,0.12 1,0.30 1,0.58 L1,1 Z" stroke-width="2.4" vector-effect="non-scaling-stroke"/>
@@ -554,12 +554,12 @@ textarea.input{resize:vertical; min-height:78px}
 
     <p class="sadaf" dir="rtl" lang="fa">صدف</p>
     <p class="gloss">
-      <span>sadaf · mother-of-pearl · a person</span>
+      <span>sadaf · seashell · a person</span>
       <span class="gloss__h" id="hint">drag across the vault — the eye follows, and blinks</span>
     </p>
 
     <h1 class="hero__line">turns <em>thirty</em></h1>
-    <p class="hero__sub">One day in three parts, on one of two dates, with exactly one secret. <b>The address is at the bottom of this page</b> and also in the middle, in case you're reading this on a tram.</p>
+    <p class="hero__sub">One day in three parts, on one of two dates, and all of it a surprise. <b>The address is at the bottom of this page</b> and also in the middle, in case you're reading this on a tram.</p>
 
     <div class="cta-row">
       <a class="btn btn--gold" href="#reply">Reply</a>
@@ -583,8 +583,8 @@ textarea.input{resize:vertical; min-height:78px}
     </div>
 
     <div class="dates">
-      <span class="stamp stamp--big" data-stamp aria-hidden="true">to be confirmed</span>
       <article class="dcard">
+        <span class="stamp stamp--card" data-stamp aria-hidden="true">to be confirmed</span>
         <p class="dcard__day">Saturday</p>
         <p class="dcard__n">26</p>
         <p class="dcard__m">September</p>
@@ -592,6 +592,7 @@ textarea.input{resize:vertical; min-height:78px}
         <svg class="dcard__bead" viewBox="-1.1 -1.1 2.2 2.2" aria-hidden="true"><use href="#nazar"/></svg>
       </article>
       <article class="dcard">
+        <span class="stamp stamp--card" data-stamp aria-hidden="true">to be confirmed</span>
         <p class="dcard__day">Sunday</p>
         <p class="dcard__n">27</p>
         <p class="dcard__m">September</p>
@@ -627,7 +628,7 @@ textarea.input{resize:vertical; min-height:78px}
         <h3 class="act__name">Dress the house</h3>
         <p class="act__where">Noordvestsingel 81, Schiedam · by application</p>
         <div class="act__hr"></div>
-        <p class="act__body">Roughly four people turn the house purple and gold before she sees it. This is <b>not first-come, first-served</b>; it is a selection process. Put your hand up in your reply and Oscar picks the crew on availability, ladder confidence, and whether you can be trusted with a staple gun near soft furnishings.</p>
+        <p class="act__body">Oscar gets Sadaf out of the house at midday. Roughly four people then turn it purple and gold behind her back. This is <b>not first-come, first-served</b>; it is a selection process. Put your hand up in your reply and Oscar picks the crew on availability, ladder confidence, and whether you can be trusted with a staple gun near soft furnishings.</p>
         <p class="act__body">Unsuccessful applicants are still fed later.</p>
         <div class="act__foot">
           <span class="chip chip--live">Roughly four pairs of hands</span>
@@ -635,7 +636,7 @@ textarea.input{resize:vertical; min-height:78px}
         </div>
         <aside class="secret">
           <svg class="bead" viewBox="-1.1 -1.1 2.2 2.2" aria-hidden="true"><use href="#nazar"/></svg>
-          <p><b>The one secret</b>Sadaf knows about the zoo and the party. She does not know about this. It is the only thing on this page she hasn't seen, so please don't be the one.</p>
+          <p><b>Say nothing</b>As far as Sadaf knows, something vague is happening on the day. That is all she knows. Not the zoo, not the house, not the candles. This page is the whole plan and she has never seen it, so please don't be the one.</p>
         </aside>
       </article>
 
@@ -656,10 +657,10 @@ textarea.input{resize:vertical; min-height:78px}
         </div>
         <p class="act__time"><b>۲</b>15:00 — 18:00</p>
         <h3 class="act__name">Diergaarde Blijdorp</h3>
-        <p class="act__where">Blijdorplaan 8, Rotterdam · 10 min walk from Rotterdam Centraal</p>
+        <p class="act__where">Blijdorplaan 8, Rotterdam · 10 min walk from Rotterdam Centraal · meet inside, at one exhibit</p>
         <div class="act__hr"></div>
-        <p class="act__body">Sadaf's pick, and a good one. Gorillas, the shark tunnel, and the penguins, who will be better dressed than you whatever you do. Everyone buys their own day ticket, <b>but not yet</b>: book before the poll lands and you may own a ticket to an afternoon at the zoo by yourself.</p>
-        <p class="act__body">Got a Blijdorp pass? Say so in your reply and skip this bit.</p>
+        <p class="act__body">The surprise. Oscar walks her in thinking it's a quiet afternoon out; you are all already waiting at one particular exhibit, in purple and gold, among the animals. She finds out she has company when she sees it. Then gorillas, the shark tunnel, and the penguins, who will be better dressed than you whatever you do.</p>
+        <p class="act__body">Everyone buys their own day ticket, <b>but not yet</b>: book before the poll lands and you may own a ticket to an afternoon at the zoo by yourself. The exhibit to meet at follows in the group. Got a Blijdorp pass? Say so in your reply and skip the ticket.</p>
         <div class="act__foot">
           <span class="price">€27,50<small>per person</small></span>
           <a class="link-out" href="https://diergaardeblijdorp.nl/nl/dagtickets-kopen" target="_blank" rel="noopener noreferrer">Tickets ↗</a>
@@ -669,7 +670,7 @@ textarea.input{resize:vertical; min-height:78px}
 
       <div class="hop">
         <p class="hop__t">18:00 → 19:30 · the hop</p>
-        <p class="hop__p">Blijdorp to Schiedam is about twenty-five minutes door to door. <b>Come straight on from the zoo</b> — you'll land at the house around 18:45 and can change there — or arrive at 19:30 already in purple and gold. Either way, wear something you can walk a zoo in and bring the good outfit in a bag. Nobody has ever regretted the bag.</p>
+        <p class="hop__p">Blijdorp to Schiedam is about twenty-five minutes door to door. At the gate, Oscar will casually suggest a few people come back for food and a drink. <b>Everyone comes back.</b> You'll land at the house around 18:45 and can change there, or arrive at 19:30 already in purple and gold. Either way, wear something you can walk a zoo in and bring the good outfit in a bag. Nobody has ever regretted the bag.</p>
       </div>
 
       <article class="act act--party panel">
@@ -686,7 +687,7 @@ textarea.input{resize:vertical; min-height:78px}
         <h3 class="act__name">The party</h3>
         <p class="act__where">Noordvestsingel 81, 3119 DC Schiedam</p>
         <div class="act__hr"></div>
-        <p class="act__body">Food, drinks, music, and thirty candles on one cake, which under most fire codes is an event rather than a dessert. There's a nazar over the door; it handles quality assurance and has never lost a guest. <b>Bring yourself.</b> If you want to bring something, a bottle is correct.</p>
+        <p class="act__body">In Sadaf's mind: a few people back for food and a drink, nothing major. In reality: the house in purple and gold, music, food, and thirty candles on one cake, which under most fire codes is an event rather than a dessert. There's a nazar over the door; it handles quality assurance and has never lost a guest. <b>Bring yourself.</b> If you want to bring something, a bottle is correct.</p>
         <div class="act__foot">
           <a class="link-out" href="https://www.google.com/maps/search/?api=1&amp;query=Noordvestsingel+81%2C+3119+DC+Schiedam" target="_blank" rel="noopener noreferrer">Open in Maps ↗</a>
           <span class="chip">Somewhere to change</span>
@@ -768,7 +769,7 @@ textarea.input{resize:vertical; min-height:78px}
             <input type="checkbox" id="cZoo">
             <span>
               <span class="opt__t">Blijdorp</span>
-              <span class="opt__d">15:00–18:00 · €27,50 · your own ticket, bought later, not now</span>
+              <span class="opt__d">15:00–18:00 · €27,50 · your own ticket, bought later · meet at the exhibit, not the gate</span>
             </span>
           </label>
 
@@ -776,7 +777,7 @@ textarea.input{resize:vertical; min-height:78px}
             <input type="checkbox" id="cParty">
             <span>
               <span class="opt__t">The party</span>
-              <span class="opt__d">19:30 till late · Noordvestsingel 81 · from 18:45 if you're coming from the zoo</span>
+              <span class="opt__d">19:30 till late · Noordvestsingel 81 · from 18:45 if you're "just coming back for a drink" from the zoo</span>
             </span>
           </label>
         </div>
@@ -836,7 +837,7 @@ textarea.input{resize:vertical; min-height:78px}
       <div class="how__r"><span class="how__n">۱</span><p class="how__t"><b>Vote on the date</b> in the group poll — Saturday the 26th or Sunday the 27th.</p></div>
       <div class="how__r"><span class="how__n">۲</span><p class="how__t"><b>Send your reply</b> into the group, so we know how many to cook for and how many chairs to borrow.</p></div>
       <div class="how__r"><span class="how__n">۳</span><p class="how__t"><b>Don't book Blijdorp</b> until the date is confirmed. The zoo will still be there.</p></div>
-      <div class="how__r"><span class="how__n">۴</span><p class="how__t"><b>Not a word to Sadaf</b> about the house at midday. She knows the rest. It's one secret; please don't be the one.</p></div>
+      <div class="how__r"><span class="how__n">۴</span><p class="how__t"><b>Not a word to Sadaf</b> about any of it. She knows something is happening and nothing else. The zoo is a surprise on the day, and the party is "a few drinks back at ours" until it isn't.</p></div>
     </div>
   </section>
 

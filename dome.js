@@ -12,7 +12,7 @@ window.SadafDome = function(cv, opts){
   var ctx  = cv.getContext('2d');
   var base = document.createElement('canvas'), bctx = base.getContext('2d');
   var TAU = Math.PI*2;
-  var W=0,H=0,dpr=1,CX=0,CY=0,R0=30,RMAX=0,C=[],BEADS=[],raf=null,t0=performance.now();
+  var W=0,H=0,dpr=1,CX=0,CY=0,R0=30,RMAX=0,C=[],BEADS=[],BAND={x:0,y:0,w:0,h:0},raf=null,t0=performance.now();
   var REVEAL = 1.9;
   var ptr = {x:-1e4,y:-1e4,live:false};
 
@@ -29,26 +29,6 @@ window.SadafDome = function(cv, opts){
   function hash(a,b){ var v = Math.sin(a*127.1 + b*311.7)*43758.5453; return v - Math.floor(v); }
   function hsl(g,dl,ds){ return 'hsl('+g[0]+' '+Math.max(0,Math.min(100,g[1]+(ds||0)))+'% '+Math.max(0,Math.min(100,g[2]+(dl||0)))+'%)'; }
 
-  /* the name as two masks: red where the letters are, green in a halo around them */
-  function masks(w,h,cell){
-    var m = document.createElement('canvas'); m.width=w; m.height=h;
-    var c = m.getContext('2d');
-    c.fillStyle='#000'; c.fillRect(0,0,w,h);
-    var size = Math.min(h*(W < 620 ? 0.44 : 0.36), w*0.24);
-    c.textAlign='center'; c.textBaseline='alphabetic';
-    try{ c.letterSpacing = '0.05em'; }catch(e){}
-    for(var i=0;i<40;i++){
-      c.font = '400 '+size+'px "Archivo Black", "Arial Black", sans-serif';
-      if(c.measureText(word).width <= w*(W < 620 ? 0.86 : 0.76)) break;
-      size *= 0.94;
-    }
-    var cap = c.measureText(word).actualBoundingBoxAscent || size*0.7;
-    var y = h*(W < 620 ? 0.80 : 0.79) + cap/2;
-    c.lineJoin='round'; c.strokeStyle='#0f0'; c.lineWidth=cell*2.8; c.strokeText(word, w/2, y);
-    c.fillStyle='#f00'; c.fillText(word, w/2, y);
-    return c.getImageData(0,0,w,h).data;
-  }
-
   function build(){
     var rect = cv.getBoundingClientRect();
     W = Math.max(280, Math.round(rect.width || cv.width));
@@ -62,7 +42,10 @@ window.SadafDome = function(cv, opts){
     CX = W/2; CY = H*0.17;
     RMAX = Math.hypot(W/2, H-CY) + cell*2;
 
-    var px = masks(W,H,cell);
+    /* the inscription band, low in the vault */
+    var bh = Math.max(56, Math.min(92, H*0.19));
+    BAND = { w: W*(W < 620 ? 0.84 : 0.76), h: bh, y: H*0.71 };
+    BAND.x = (W - BAND.w)/2;
     C = []; BEADS = [];
     var rb = R0*1.72, b = 0;
     while(rb < RMAX){
@@ -77,17 +60,16 @@ window.SadafDome = function(cv, opts){
           var am = k*w + off + w/2;
           var cx = CX + Math.cos(am)*r, cy = CY + Math.sin(am)*r;
           if(cy < -t || cy > H+t || cx < -t || cx > W+t) continue;
-          var gx = Math.min(W-1, Math.max(0, Math.round(cx))), gy = Math.min(H-1, Math.max(0, Math.round(cy)));
-          var i4 = (gy*W + gx)*4;
-          var inWord = px[i4] > 128, halo = !inWord && px[i4+1] > 128;
+          var under = cx > BAND.x - t && cx < BAND.x + BAND.w + t && cy > BAND.y - t && cy < BAND.y + BAND.h + t;
+          var inWord = false, halo = false;
           var hh = hash(b*97 + j*13, k*7 + 1);
           /* the sunburst: sixteen rays, twisted a little as they go out */
           var ray = ((am/TAU)*16 + r*0.0045) % 1; if(ray < 0) ray += 1;
           var pal = inWord ? WORD : (halo ? [G.halo] : (ray < 0.5 ? RAY : WALL));
           var g = pal[Math.floor(hh*pal.length) % pal.length];
           if(!inWord && !halo && hash(k*3+b, j*5+2) < 0.05) g = G.anar;
-          C.push({x:cx, y:cy, a:am, r:r, t:t, w:w, g:g, word:inWord, halo:halo,
-                  bright:(g===G.leaf || g===G.cream || inWord), boost:0, d:Math.hypot(cx-CX, cy-CY)});
+          C.push({x:cx, y:cy, a:am, r:r, t:t, w:w, g:g, word:false, halo:false, under:under,
+                  bright:(g===G.leaf || g===G.cream), boost:0, d:Math.hypot(cx-CX, cy-CY)});
         }
       }
       rb = rEnd; b++;
@@ -96,7 +78,7 @@ window.SadafDome = function(cv, opts){
     /* a few nazar beads set into the vault, never on the name, well apart */
     for(var q=0; q<C.length; q++){
       var c2 = C[q];
-      if(c2.word || c2.halo || c2.d < R0*3.2 || c2.y < 0 || c2.y > H) continue;
+      if(c2.under || c2.d < R0*3.2 || c2.y < 0 || c2.y > H) continue;
       if(hash(c2.x*0.37, c2.y*0.91) > 0.012) continue;
       var far = BEADS.every(function(e){ return Math.hypot(e.x-c2.x, e.y-c2.y) > Math.min(W,H)*0.28; });
       if(!far || BEADS.length >= 5) continue;
@@ -173,11 +155,77 @@ window.SadafDome = function(cv, opts){
     var v = bctx.createRadialGradient(CX,CY,R0, CX,CY,RMAX);
     v.addColorStop(0,'rgba(255,228,170,.16)'); v.addColorStop(0.4,'rgba(0,0,0,0)'); v.addColorStop(1,'rgba(18,5,36,.55)');
     bctx.fillStyle = v; bctx.fillRect(0,0,W,H);
-    /* the name, raised */
-    for(i=0;i<C.length;i++){ c2 = C[i]; if(!c2.word) continue;
-      bctx.save(); bctx.translate(1.6,2.6); path(c2,bctx); bctx.fillStyle='rgba(0,0,0,.6)'; bctx.fill(); bctx.restore(); }
-    for(i=0;i<C.length;i++){ c2 = C[i]; if(c2.word) tile(c2, bctx); }
     sun(bctx);
+    band(bctx);
+  }
+
+  /* an octagram, the khatam star */
+  function star(cx2, x, y, r){
+    cx2.beginPath();
+    for(var i=0;i<16;i++){ var a = -Math.PI/2 + i*Math.PI/8, rr = (i&1) ? r*0.7654 : r;
+      var px = x + Math.cos(a)*rr, py = y + Math.sin(a)*rr; if(i) cx2.lineTo(px,py); else cx2.moveTo(px,py); }
+    cx2.closePath();
+  }
+
+  /* the inscription band: a lapis cartouche with the name in cream,
+     the tile joints running through the letters as they do on a real kitabeh */
+  function band(cx2){
+    var x = BAND.x, y = BAND.y, w = BAND.w, h = BAND.h, ch = h*0.34;
+    function shape(inset){
+      var xi = x+inset, yi = y+inset, wi = w-inset*2, hi = h-inset*2, c = Math.max(4, ch-inset);
+      cx2.beginPath();
+      cx2.moveTo(xi+c, yi); cx2.lineTo(xi+wi-c, yi); cx2.lineTo(xi+wi, yi+c); cx2.lineTo(xi+wi, yi+hi-c);
+      cx2.lineTo(xi+wi-c, yi+hi); cx2.lineTo(xi+c, yi+hi); cx2.lineTo(xi, yi+hi-c); cx2.lineTo(xi, yi+c);
+      cx2.closePath();
+    }
+    /* shadow onto the vault */
+    cx2.save(); cx2.shadowColor='rgba(0,0,0,.6)'; cx2.shadowBlur=22; cx2.shadowOffsetY=10;
+    shape(0); cx2.fillStyle='#10285E'; cx2.fill(); cx2.restore();
+    /* lapis glaze */
+    shape(0);
+    var g = cx2.createLinearGradient(0,y,0,y+h);
+    g.addColorStop(0,'#1B3F8A'); g.addColorStop(0.5,'#122F6E'); g.addColorStop(1,'#0C2050');
+    cx2.fillStyle = g; cx2.fill();
+    /* tile joints through the band */
+    cx2.save(); shape(0); cx2.clip();
+    var cs = Math.max(14, h*0.5);
+    cx2.strokeStyle='rgba(255,255,255,.09)'; cx2.lineWidth=1;
+    for(var gx = x + (w % cs)/2; gx < x+w; gx += cs){ cx2.beginPath(); cx2.moveTo(gx, y); cx2.lineTo(gx, y+h); cx2.stroke(); }
+    cx2.beginPath(); cx2.moveTo(x, y+h/2); cx2.lineTo(x+w, y+h/2); cx2.stroke();
+    /* glaze sheen */
+    var sh = cx2.createLinearGradient(0,y,0,y+h*0.55);
+    sh.addColorStop(0,'rgba(255,255,255,.14)'); sh.addColorStop(1,'rgba(255,255,255,0)');
+    cx2.fillStyle = sh; cx2.fillRect(x,y,w,h*0.55);
+    cx2.restore();
+    /* borders: gold, then a fine cream line inside */
+    shape(0); cx2.lineWidth = Math.max(2, h*0.035); cx2.strokeStyle='#D9A441'; cx2.stroke();
+    shape(Math.max(4, h*0.07)); cx2.lineWidth = 1; cx2.strokeStyle='rgba(247,239,224,.75)'; cx2.stroke();
+    /* stars at either end */
+    var sr = h*0.15, sx1 = x + ch + sr*0.9, sx2 = x + w - ch - sr*0.9, sy = y + h/2;
+    [sx1, sx2].forEach(function(sx){
+      star(cx2, sx, sy, sr); cx2.fillStyle='#D9A441'; cx2.fill();
+      star(cx2, sx, sy, sr*0.5); cx2.fillStyle='#F7EFE0'; cx2.fill();
+    });
+    /* the name */
+    var fs = h*0.60;
+    cx2.textAlign='center'; cx2.textBaseline='middle';
+    try{ cx2.letterSpacing = '0.14em'; }catch(e){}
+    var maxw = (sx2 - sx1) - sr*3;
+    for(var i=0;i<40;i++){
+      cx2.font = '700 '+fs.toFixed(1)+'px "Amiri", Georgia, "Times New Roman", serif';
+      if(cx2.measureText(word).width <= maxw) break;
+      fs *= 0.95;
+    }
+    var tx = x + w/2 + fs*0.07, ty = y + h/2 + fs*0.06;   /* letter-spacing trails; Amiri sits high */
+    cx2.save();
+    cx2.shadowColor='rgba(0,0,0,.55)'; cx2.shadowBlur=5; cx2.shadowOffsetY=3;
+    cx2.lineJoin='round'; cx2.lineWidth = fs*0.09; cx2.strokeStyle='#8A5E14'; cx2.strokeText(word, tx, ty);
+    cx2.restore();
+    cx2.lineWidth = fs*0.045; cx2.strokeStyle='#D9A441'; cx2.strokeText(word, tx, ty);
+    var tg = cx2.createLinearGradient(0, ty-fs*0.45, 0, ty+fs*0.45);
+    tg.addColorStop(0,'#FFFBEE'); tg.addColorStop(0.6,'#F7EFE0'); tg.addColorStop(1,'#E9D9B8');
+    cx2.fillStyle = tg; cx2.fillText(word, tx, ty);
+    try{ cx2.letterSpacing = '0px'; }catch(e){}
   }
 
   function eye(cx2, x, y, er, px2, py2, blink){
@@ -216,16 +264,16 @@ window.SadafDome = function(cv, opts){
         if(dd0 > 0) continue;
       }
       /* sunlight sweeping round the vault */
-      if(!RM && !c2.halo){
+      if(!RM && !c2.under){
         var da = Math.abs(((c2.a - th) % TAU + TAU) % TAU); if(da > Math.PI) da = TAU - da;
         if(da < hw){ var k = 1 - da/hw; k *= k; path(c2, ctx); ctx.fillStyle = 'rgba(255,246,220,'+(k*(c2.bright?0.30:0.17))+')'; ctx.fill(); }
       }
       /* the finger */
-      if(ptr.live){
+      if(ptr.live && !c2.under){
         var dx = c2.x-ptr.x, dy = c2.y-ptr.y, dd = dx*dx + dy*dy;
         if(dd < 8100) c2.boost = Math.max(c2.boost, 1 - Math.sqrt(dd)/90);
       }
-      if(c2.boost > 0.03){
+      if(c2.boost > 0.03 && !c2.under){
         path(c2, ctx);
         ctx.globalAlpha = c2.boost*0.92;
         ctx.fillStyle = hsl(c2.g, c2.halo ? 40*c2.boost : 30*c2.boost, 10); ctx.fill();
