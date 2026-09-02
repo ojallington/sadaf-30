@@ -228,6 +228,21 @@ button{font:inherit; color:inherit}
 }
 .link-out:hover{transform:translateY(-2px); filter:brightness(1.15)}
 
+/* the hop — the journey between the zoo and the house, which is real information */
+.hop{text-align:center; max-width:54ch; margin:0 auto; padding:2px 12px}
+.hop::before,.hop::after{
+  content:""; display:block; width:1px; height:20px; margin:0 auto;
+  background:linear-gradient(180deg, rgba(217,164,65,.05), rgba(217,164,65,.6));
+}
+.hop::after{background:linear-gradient(180deg, rgba(217,164,65,.6), rgba(217,164,65,.05))}
+.hop__t{
+  display:inline-block; margin-top:10px;
+  font-size:11px; font-weight:700; letter-spacing:.22em; color:var(--zar-2);
+  font-variant-numeric:tabular-nums;
+}
+.hop__p{margin:9px 0 10px; font-size:14.5px; font-weight:300; color:var(--roshan); line-height:1.55}
+.hop__p b{color:var(--sedef); font-weight:600}
+
 /* ---- dress code ---- */
 .dress{
   position:relative; text-align:center; padding:clamp(46px,8vh,84px) var(--gut);
@@ -496,12 +511,17 @@ textarea.input{resize:vertical; min-height:78px}
         <h3 class="act__name">Diergaarde Blijdorp</h3>
         <p class="act__where">Blijdorplaan 8, Rotterdam · 10 min walk from Rotterdam Centraal</p>
         <div class="act__hr"></div>
-        <p class="act__body">Sadaf's pick. Gorillas, the shark tunnel, penguins behaving badly. Everyone buys their own day ticket — but wait until the date is settled before you book. Already have a Blijdorp pass? Say so and skip this bit.</p>
+        <p class="act__body">Sadaf's pick. Gorillas, the shark tunnel, penguins behaving badly. Everyone buys their own day ticket — but wait until the date is settled before you book. Already have a Blijdorp pass? Say so and skip this bit. We walk to the house together afterwards.</p>
         <div class="act__foot">
           <span class="price">€27,50<small>per person</small></span>
           <a class="link-out" href="https://diergaardeblijdorp.nl/nl/dagtickets-kopen" target="_blank" rel="noopener noreferrer">Tickets ↗</a>
         </div>
       </article>
+
+      <div class="hop">
+        <p class="hop__t">18:00 → 19:30 · the hop</p>
+        <p class="hop__p">Blijdorp to Schiedam is about twenty-five minutes door to door. <b>Come straight on with us from the zoo</b> — there's room at the house to change, so wear something you can walk a zoo in and bring the purple and gold in a bag. Not coming to Blijdorp? Just turn up at 19:30.</p>
+      </div>
 
       <article class="act act--party panel">
         <div class="niche" aria-hidden="true"><span>۳</span></div>
@@ -509,9 +529,10 @@ textarea.input{resize:vertical; min-height:78px}
         <h3 class="act__name">The party</h3>
         <p class="act__where">Noordvestsingel 81, 3119 DC Schiedam</p>
         <div class="act__hr"></div>
-        <p class="act__body">Back to the house for food, drinks, music and thirty candles. There's a nazar over the door, so nothing can go wrong. Bring yourself; if you want to bring something, make it a bottle.</p>
+        <p class="act__body">Food, drinks, music and thirty candles. Two ways in: drift back with the zoo crowd from about 18:45 and change here, or arrive at 19:30 dressed and ready. There's a nazar over the door, so nothing can go wrong. Bring yourself; if you want to bring something, make it a bottle.</p>
         <div class="act__foot">
           <a class="link-out" href="https://www.google.com/maps/search/?api=1&amp;query=Noordvestsingel+81%2C+3119+DC+Schiedam" target="_blank" rel="noopener noreferrer">Open in Maps ↗</a>
+          <span class="chip">Somewhere to change</span>
           <span class="chip">Sofa available for the brave</span>
         </div>
       </article>
@@ -575,7 +596,7 @@ textarea.input{resize:vertical; min-height:78px}
             <input type="checkbox" id="cZoo">
             <span>
               <span class="opt__t">Blijdorp</span>
-              <span class="opt__d">15:00–18:00 · €27,50 · you book your own ticket</span>
+              <span class="opt__d">15:00–18:00 · €27,50 · you book your own ticket, and we walk to the house after</span>
             </span>
           </label>
 
@@ -583,7 +604,7 @@ textarea.input{resize:vertical; min-height:78px}
             <input type="checkbox" id="cParty">
             <span>
               <span class="opt__t">The party</span>
-              <span class="opt__d">19:30 till late · Noordvestsingel 81</span>
+              <span class="opt__d">19:30 till late · Noordvestsingel 81 · earlier if you're coming from the zoo</span>
             </span>
           </label>
         </div>
