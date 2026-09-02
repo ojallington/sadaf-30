@@ -1,0 +1,43 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,700;1,400;1,700&family=Vazirmatn:wght@300..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@700&text=%D8%B5%D8%AF%D9%81&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0}
+body{width:1200px;height:630px;overflow:hidden;background:#2A0E44;font-family:"Vazirmatn",sans-serif;position:relative}
+.bg{position:absolute;inset:0;width:100%;height:100%;opacity:.17}
+.glow{position:absolute;inset:0;background:
+  radial-gradient(760px 520px at 50% -12%,rgba(217,164,65,.24),transparent 66%),
+  radial-gradient(700px 620px at 6% 60%,rgba(43,184,172,.13),transparent 64%),
+  radial-gradient(700px 600px at 96% 84%,rgba(192,53,95,.15),transparent 64%)}
+.frame{position:absolute;inset:26px;border:1.5px solid rgba(217,164,65,.42)}
+.frame::after{content:"";position:absolute;inset:9px;border:1px solid rgba(217,164,65,.2)}
+.in{position:relative;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 90px}
+.nas{font-family:"Noto Nastaliq Urdu",serif;font-size:60px;color:#F2D79A;line-height:1.9;direction:rtl;margin-bottom:2px}
+.kick{font-size:15px;letter-spacing:.32em;text-transform:uppercase;color:#F2D79A;font-weight:500;margin-bottom:26px}
+h1{font-family:"Amiri",serif;font-style:italic;font-weight:400;font-size:112px;line-height:1;color:#F7EFE0;letter-spacing:-.01em}
+h1 em{font-style:italic;color:#D9A441}
+.rule{display:flex;align-items:center;gap:16px;margin:30px 0 24px}
+.rule i{display:block;height:1px;width:150px;background:linear-gradient(90deg,rgba(217,164,65,0),rgba(217,164,65,.85))}
+.rule i:last-child{background:linear-gradient(90deg,rgba(217,164,65,.85),rgba(217,164,65,0))}
+.date{font-family:"Amiri",serif;font-weight:700;font-size:44px;color:#F2D79A;line-height:1.1}
+.meta{font-size:19px;color:#C9B2E0;font-weight:300;letter-spacing:.05em;margin-top:14px}
+.meta b{color:#2BB8AC;font-weight:600}
+</style></head><body>
+<svg class="bg"><defs>
+<path id="s18" d="M0,-18 L5.272,-12.728 L12.728,-12.728 L12.728,-5.272 L18,0 L12.728,5.272 L12.728,12.728 L5.272,12.728 L0,18 L-5.272,12.728 L-12.728,12.728 L-12.728,5.272 L-18,0 L-12.728,-5.272 L-12.728,-12.728 L-5.272,-12.728 Z"/>
+<path id="x12" d="M0,-12 L3.564,-3.564 L12,0 L3.564,3.564 L0,12 L-3.564,3.564 L-12,0 L-3.564,-3.564 Z"/>
+<pattern id="g" width="72" height="72" patternUnits="userSpaceOnUse"><g fill="none" stroke="#D9A441" stroke-width="1.15">
+<use href="#s18" x="0" y="0"/><use href="#s18" x="72" y="0"/><use href="#s18" x="0" y="72"/><use href="#s18" x="72" y="72"/><use href="#s18" x="36" y="36"/>
+<use href="#x12" x="36" y="0"/><use href="#x12" x="0" y="36"/><use href="#x12" x="72" y="36"/><use href="#x12" x="36" y="72"/></g></pattern>
+</defs><rect width="100%" height="100%" fill="url(#g)"/></svg>
+<div class="glow"></div><div class="frame"></div>
+<div class="in">
+  <p class="nas" dir="rtl" lang="fa">صدف</p>
+  <p class="kick">Sadaf · mother-of-pearl</p>
+  <h1>turns <em>thirty</em></h1>
+  <div class="rule"><i></i>
+    <svg width="17" height="17" viewBox="-1.1 -1.1 2.2 2.2"><path d="M0,-1 L0.2929,-0.7071 L0.7071,-0.7071 L0.7071,-0.2929 L1,0 L0.7071,0.2929 L0.7071,0.7071 L0.2929,0.7071 L0,1 L-0.2929,0.7071 L-0.7071,0.7071 L-0.7071,0.2929 L-1,0 L-0.7071,-0.2929 L-0.7071,-0.7071 L-0.2929,-0.7071 Z" fill="#D9A441"/></svg>
+  <i></i></div>
+  <p class="date">26 or 27 September 2026</p>
+  <p class="meta">Rotterdam &amp; Schiedam &nbsp;·&nbsp; dress code <b>purple &amp; gold</b> &nbsp;·&nbsp; twenty places</p>
+</div></body></html>
