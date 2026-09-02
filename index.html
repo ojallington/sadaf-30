@@ -413,9 +413,57 @@ textarea.input{resize:vertical; min-height:78px}
 .foot__medal{position:relative; width:96px; height:96px; margin:0 auto 20px; display:grid; place-items:center}
 .foot__medal .oct{position:absolute; inset:0; width:100%; height:100%}
 .foot__medal span{font-family:var(--nastaliq); font-size:26px; color:var(--zar-2); position:relative; line-height:1.6}
-.foot__addr{font-family:var(--display); font-size:clamp(23px,4vw,34px); font-style:italic; margin:0 0 6px}
 .foot__meta{color:var(--roshan); font-size:14px; margin:0 0 24px; letter-spacing:.06em; font-weight:300; display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:8px 10px}
 .foot__fine{color:rgba(201,178,224,.6); font-size:12.5px; margin:30px auto 0; max-width:48ch; line-height:1.6; font-weight:300}
+
+/* ============================================================
+   FRAME CORNERS + DOME HERO + EMBLEMS + SWATCHES + PLAQUE
+   ============================================================ */
+.frame .corner{position:absolute; width:30px; height:30px; color:var(--zar); filter:drop-shadow(0 0 6px rgba(217,164,65,.45))}
+.frame .corner:nth-child(1){left:-15px; top:-15px}
+.frame .corner:nth-child(2){right:-15px; top:-15px}
+.frame .corner:nth-child(3){left:-15px; bottom:-15px}
+.frame .corner:nth-child(4){right:-15px; bottom:-15px}
+
+.taq{filter:drop-shadow(0 34px 44px rgba(0,0,0,.65))}
+.taq::before{
+  content:""; position:absolute; left:50%; top:8%; width:70%; height:60%; transform:translateX(-50%);
+  background:radial-gradient(closest-side, rgba(242,215,154,.28), rgba(242,215,154,0));
+  filter:blur(30px); z-index:-1; pointer-events:none;
+}
+#inlay{height:clamp(270px,42vw,440px)}
+.hero__line em{
+  background:linear-gradient(175deg,#FFF1C2 0%, var(--zar-2) 30%, var(--zar) 55%, #8A5E14 78%, var(--zar-2) 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  filter:drop-shadow(0 2px 0 rgba(0,0,0,.35)) drop-shadow(0 10px 22px rgba(217,164,65,.28));
+}
+
+.niche{width:96px; height:124px; margin:-64px auto 14px}
+.niche svg{width:66px; height:66px; margin-top:34px; filter:drop-shadow(0 6px 10px rgba(0,0,0,.6))}
+.act__time b{font-family:var(--display); font-size:15px; font-weight:400; margin-right:8px; letter-spacing:0}
+
+.swatches{display:grid; grid-template-columns:repeat(auto-fit,minmax(72px,1fr)); gap:14px 10px; max-width:760px; margin:34px auto 0}
+.sw{text-align:center}
+.sw__c{
+  position:relative; height:56px; border-radius:3px; border:1px solid rgba(242,215,154,.4);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.28), inset 0 -10px 14px -8px rgba(0,0,0,.5), 0 10px 20px -12px rgba(0,0,0,.85);
+}
+.sw__c::after{content:""; position:absolute; left:12%; top:12%; width:34%; height:22%; border-radius:50%; background:rgba(255,255,255,.3); filter:blur(2px)}
+.sw__l{font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--roshan); margin:8px 0 0; font-weight:500}
+.sw--no .sw__c{background:#121016}
+.sw--no .sw__c::before{content:""; position:absolute; inset:0; z-index:1;
+  background:linear-gradient(45deg,transparent 46.5%,var(--anar) 47.5% 52.5%,transparent 53.5%),linear-gradient(-45deg,transparent 46.5%,var(--anar) 47.5% 52.5%,transparent 53.5%)}
+.sw--no .sw__l{color:#E56A8F}
+
+.plaque{
+  display:inline-block; margin:0 auto 20px; padding:16px 28px 14px; border-radius:2px; text-align:center;
+  background:#F4EEE2; color:#1F3F8F; border:2px solid #1F3F8F;
+  box-shadow:inset 0 0 0 5px #F4EEE2, inset 0 0 0 6px #1F3F8F, 0 24px 44px -24px rgba(0,0,0,.95);
+}
+.plaque__s{font-family:var(--display); font-weight:700; font-size:clamp(22px,4.6vw,36px); line-height:1; letter-spacing:.02em; margin:0}
+.plaque__n{font-family:var(--display); font-weight:700; font-size:clamp(44px,10vw,68px); line-height:1; margin:6px 0 0}
+.plaque__p{font-size:11px; letter-spacing:.24em; text-transform:uppercase; margin:8px 0 0; font-weight:600}
+.plaque__cap{font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:rgba(201,178,224,.6); margin:0 0 22px; font-weight:500}
 
 #burst{position:fixed; inset:0; pointer-events:none; z-index:60}
 
@@ -428,6 +476,9 @@ textarea.input{resize:vertical; min-height:78px}
   .trio .opt{flex-direction:row; text-align:left}
   .trio .opt__d{margin-top:3px}
   .stamp--big{top:-18px; right:6px}
+  .niche{width:84px; height:110px; margin-top:-58px}
+  .niche svg{width:56px; height:56px; margin-top:30px}
+  .swatches{grid-template-columns:repeat(3,1fr)}
   .candles{gap:14px 6px; max-width:300px}
 }
 @media (prefers-reduced-motion:reduce){
@@ -470,7 +521,12 @@ textarea.input{resize:vertical; min-height:78px}
 </svg>
 
 <svg class="kashi" aria-hidden="true"><rect width="100%" height="100%" fill="url(#girih)"/></svg>
-<div class="frame" aria-hidden="true"></div>
+<div class="frame" aria-hidden="true">
+  <svg class="corner" viewBox="-1.1 -1.1 2.2 2.2"><use href="#oct" fill="#2A0E44" stroke="currentColor" stroke-width="0.09"/><use href="#oct" fill="currentColor" transform="scale(0.5)"/></svg>
+  <svg class="corner" viewBox="-1.1 -1.1 2.2 2.2"><use href="#oct" fill="#2A0E44" stroke="currentColor" stroke-width="0.09"/><use href="#oct" fill="currentColor" transform="scale(0.5)"/></svg>
+  <svg class="corner" viewBox="-1.1 -1.1 2.2 2.2"><use href="#oct" fill="#2A0E44" stroke="currentColor" stroke-width="0.09"/><use href="#oct" fill="currentColor" transform="scale(0.5)"/></svg>
+  <svg class="corner" viewBox="-1.1 -1.1 2.2 2.2"><use href="#oct" fill="#2A0E44" stroke="currentColor" stroke-width="0.09"/><use href="#oct" fill="currentColor" transform="scale(0.5)"/></svg>
+</div>
 
 <div class="shell">
 
@@ -485,7 +541,7 @@ textarea.input{resize:vertical; min-height:78px}
     </div>
 
     <div class="taq">
-      <canvas id="inlay" aria-label="The name Sadaf laid out in glazed tilework, watched by a number of nazar beads"></canvas>
+      <canvas id="inlay" aria-label="A glazed tile dome seen from below, the name Sadaf set into the vault, a nazar bead for an oculus"></canvas>
       <svg class="taq__frame" viewBox="0 0 1 1" preserveAspectRatio="none" aria-hidden="true">
         <g fill="none" stroke="#D9A441">
           <path d="M0,1 L0,0.58 C0,0.30 0.38,0.12 0.5,0 C0.62,0.12 1,0.30 1,0.58 L1,1 Z" stroke-width="2.4" vector-effect="non-scaling-stroke"/>
@@ -493,16 +549,13 @@ textarea.input{resize:vertical; min-height:78px}
                 stroke-width="1" stroke-opacity=".55" vector-effect="non-scaling-stroke"/>
         </g>
       </svg>
-      <svg class="taq__crown" viewBox="-1.16 -1.16 2.32 2.32" aria-hidden="true">
-        <use href="#nazar"/>
-      </svg>
     </div>
-    <p class="taq__cap"><b id="tileN">—</b> tiles, each laid by hand, if a for-loop counts as a hand. The beads are quality assurance.</p>
+    <p class="taq__cap"><b id="tileN">—</b> glazed tiles, laid by hand, if a for-loop counts as a hand. The eye in the oculus is quality assurance.</p>
 
     <p class="sadaf" dir="rtl" lang="fa">صدف</p>
     <p class="gloss">
       <span>sadaf · mother-of-pearl · a person</span>
-      <span class="gloss__h" id="hint">drag across the tiles — they blink, but they don't mind</span>
+      <span class="gloss__h" id="hint">drag across the vault — the eye follows, and blinks</span>
     </p>
 
     <h1 class="hero__line">turns <em>thirty</em></h1>
@@ -565,8 +618,12 @@ textarea.input{resize:vertical; min-height:78px}
     <div class="acts">
 
       <article class="act act--prep panel">
-        <div class="niche" aria-hidden="true"><span>۱</span></div>
-        <p class="act__time">12:00 — 14:00</p>
+        <div class="niche" aria-hidden="true">
+          <svg viewBox="0 0 100 100"><path d="M6,20 Q50,44 94,20" fill="none" stroke="#F2D79A" stroke-width="1.5"/>
+          <polygon points="15.6,26.5 25.6,26.5 20.6,38" fill="#A96BE0"/><polygon points="28.2,30.2 38.2,30.2 33.2,42" fill="#D9A441"/><polygon points="45,32 55,32 50,44" fill="#C0355F"/><polygon points="61.8,30.2 71.8,30.2 66.8,42" fill="#D9A441"/><polygon points="74.4,26.5 84.4,26.5 79.4,38" fill="#A96BE0"/>
+          <g stroke="#D9A441" stroke-width="3.5" stroke-linecap="round"><line x1="36" y1="96" x2="58" y2="40"/><line x1="50" y1="96" x2="72" y2="40"/><line x1="40.7" y1="84" x2="54.7" y2="84"/><line x1="44.6" y1="74" x2="58.6" y2="74"/><line x1="48.6" y1="64" x2="62.6" y2="64"/><line x1="52.5" y1="54" x2="66.5" y2="54"/></g></svg>
+        </div>
+        <p class="act__time"><b>۱</b>12:00 — 14:00</p>
         <h3 class="act__name">Dress the house</h3>
         <p class="act__where">Noordvestsingel 81, Schiedam · by application</p>
         <div class="act__hr"></div>
@@ -583,8 +640,21 @@ textarea.input{resize:vertical; min-height:78px}
       </article>
 
       <article class="act act--zoo panel">
-        <div class="niche" aria-hidden="true"><span>۲</span></div>
-        <p class="act__time">15:00 — 18:00</p>
+        <div class="niche" aria-hidden="true">
+          <svg viewBox="0 0 100 100">
+          <ellipse cx="27" cy="62" rx="6" ry="17" fill="#2A0E44" stroke="#F2D79A" stroke-width="1.5" transform="rotate(14 27 62)"/>
+          <ellipse cx="73" cy="62" rx="6" ry="17" fill="#2A0E44" stroke="#F2D79A" stroke-width="1.5" transform="rotate(-14 73 62)"/>
+          <ellipse cx="41" cy="93" rx="8" ry="3.2" fill="#D9A441"/><ellipse cx="59" cy="93" rx="8" ry="3.2" fill="#D9A441"/>
+          <ellipse cx="50" cy="63" rx="24" ry="30" fill="#2A0E44" stroke="#F2D79A" stroke-width="1.5"/>
+          <ellipse cx="50" cy="67" rx="15" ry="21" fill="#F7EFE0"/>
+          <circle cx="50" cy="32" r="17" fill="#2A0E44" stroke="#F2D79A" stroke-width="1.5"/>
+          <ellipse cx="43" cy="34" rx="6.5" ry="8" fill="#F7EFE0"/><ellipse cx="57" cy="34" rx="6.5" ry="8" fill="#F7EFE0"/>
+          <circle cx="44" cy="34" r="2.2" fill="#0B1226"/><circle cx="56" cy="34" r="2.2" fill="#0B1226"/>
+          <polygon points="46,40 54,40 50,47" fill="#D9A441"/>
+          <polygon points="38,50 50,53.5 38,57" fill="#D9A441"/><polygon points="62,50 50,53.5 62,57" fill="#D9A441"/><circle cx="50" cy="53.5" r="2.4" fill="#F2D79A"/>
+          </svg>
+        </div>
+        <p class="act__time"><b>۲</b>15:00 — 18:00</p>
         <h3 class="act__name">Diergaarde Blijdorp</h3>
         <p class="act__where">Blijdorplaan 8, Rotterdam · 10 min walk from Rotterdam Centraal</p>
         <div class="act__hr"></div>
@@ -603,8 +673,16 @@ textarea.input{resize:vertical; min-height:78px}
       </div>
 
       <article class="act act--party panel">
-        <div class="niche" aria-hidden="true"><span>۳</span></div>
-        <p class="act__time">19:30 — late</p>
+        <div class="niche" aria-hidden="true">
+          <svg viewBox="0 0 100 100">
+          <ellipse cx="50" cy="90" rx="36" ry="5" fill="#D9A441"/>
+          <rect x="20" y="64" width="60" height="26" rx="2" fill="#F7EFE0"/><rect x="20" y="72" width="60" height="6" fill="#7A2050"/>
+          <rect x="29" y="46" width="42" height="18" rx="2" fill="#F7EFE0"/><rect x="29" y="52" width="42" height="4" fill="#7A2050"/>
+          <g id="cakeCandles" stroke="#F2D79A" stroke-width="1.3"></g>
+          <ellipse cx="50" cy="30" rx="25" ry="9" fill="#F2B23A" opacity=".88"/><ellipse cx="50" cy="30" rx="14" ry="5.5" fill="#FFF6C4"/>
+          </svg>
+        </div>
+        <p class="act__time"><b>۳</b>19:30 — late</p>
         <h3 class="act__name">The party</h3>
         <p class="act__where">Noordvestsingel 81, 3119 DC Schiedam</p>
         <div class="act__hr"></div>
@@ -627,6 +705,17 @@ textarea.input{resize:vertical; min-height:78px}
     <p class="dress__v">purple &amp; gold</p>
     <p class="dress__m">and I mean it.</p>
     <p class="dress__p">Orchid, aubergine, lilac, plum, mauve: the whole purple family. Gold, brass, saffron, mirror-work. <b>Black is not a shade of purple.</b> A purple scarf over a black outfit is an attempt, and attempts will be noted by the nazar.</p>
+    <div class="swatches" aria-label="Approved shades">
+      <div class="sw"><div class="sw__c" style="background:#B565D8"></div><p class="sw__l">Orchid</p></div>
+      <div class="sw"><div class="sw__c" style="background:#C8A2E0"></div><p class="sw__l">Lilac</p></div>
+      <div class="sw"><div class="sw__c" style="background:#8A4F9E"></div><p class="sw__l">Mauve</p></div>
+      <div class="sw"><div class="sw__c" style="background:#6B2E5F"></div><p class="sw__l">Plum</p></div>
+      <div class="sw"><div class="sw__c" style="background:#3B1541"></div><p class="sw__l">Aubergine</p></div>
+      <div class="sw"><div class="sw__c" style="background:#D9A441"></div><p class="sw__l">Gold</p></div>
+      <div class="sw"><div class="sw__c" style="background:#B8862B"></div><p class="sw__l">Brass</p></div>
+      <div class="sw"><div class="sw__c" style="background:#F2B23A"></div><p class="sw__l">Saffron</p></div>
+      <div class="sw sw--no"><div class="sw__c"></div><p class="sw__l">Not purple</p></div>
+    </div>
   </section>
 
   <!-- ══════════ REPLY ══════════ -->
@@ -760,8 +849,13 @@ textarea.input{resize:vertical; min-height:78px}
       </svg>
       <span dir="rtl" lang="fa">۳۰</span>
     </div>
-    <p class="foot__addr">Noordvestsingel 81</p>
-    <p class="foot__meta"><span>3119 DC Schiedam · <span id="footDate">26 or 27 September 2026</span></span> <span class="stamp" data-stamp>to be confirmed</span></p>
+    <div class="plaque" aria-label="Noordvestsingel 81, 3119 DC Schiedam">
+      <p class="plaque__s">Noordvestsingel</p>
+      <p class="plaque__n">81</p>
+      <p class="plaque__p">3119 DC Schiedam</p>
+    </div>
+    <p class="plaque__cap">the Schiedam tile, for balance</p>
+    <p class="foot__meta"><span id="footDate">26 or 27 September 2026</span> <span class="stamp" data-stamp>to be confirmed</span></p>
     <div class="cta-row">
       <a class="btn btn--outline" href="https://www.google.com/maps/search/?api=1&amp;query=Noordvestsingel+81%2C+3119+DC+Schiedam" target="_blank" rel="noopener noreferrer">Directions ↗</a>
       <a class="btn btn--outline" href="#reply">Reply</a>
@@ -772,6 +866,7 @@ textarea.input{resize:vertical; min-height:78px}
 </div>
 <canvas id="burst" aria-hidden="true"></canvas>
 
+<script src="dome.js"></script>
 <script>
 /* ============================================================
    CONFIG — change the date here and the whole page follows:
@@ -789,7 +884,7 @@ var PARTY = {
   site:     'https://ojallington.github.io/sadaf-30/',
   times: { prep:['12:00','14:00'], zoo:['15:00','18:00'], party:['19:30','23:59'] }
 };
-var RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches || /\bstatic\b/.test(location.search);
 var el = function(id){ return document.getElementById(id); };
 
 var dateText = PARTY.decided ? PARTY.label : PARTY.pending;
@@ -804,251 +899,15 @@ if(PARTY.decided){
 }
 
 /* ============================================================
-   THE TILE FIELD — khatam stars and crosses, glazed,
-   supervised by nazar beads that blink
+   THE DOME — see dome.js
    ============================================================ */
-(function tiles(){
-  var cv = el('inlay');
-  var ctx = cv.getContext('2d');
-  /* discrete glazes, the way a tile-setter picks them */
-  /* the wall: deep, mixed, low-contrast */
-  var GLAZE_WALL = [
-    [176,62,46],  [176,62,46],  [176,58,38],   /* firouzeh, weighted */
-    [42,74,55],   [42,74,55],   [45,60,66],    /* zar */
-    [345,52,48],                               /* anar */
-    [278,44,52],                               /* violet */
-    [40,38,86]                                 /* cream */
-  ];
-  /* the name: only the glazes that carry light — cream, gold leaf, bright firouzeh */
-  var GLAZE_NAME = [
-    [40,42,88],   [45,74,74],   [176,66,58],
-    [40,42,88],   [45,70,70],   [176,60,52]
-  ];
-  var W=0,H=0,S=[],EYES=[],sp=18,R=9,raf=null,t0=performance.now();
-  var ptr = {x:-9999,y:-9999,live:false};
-
-  function poly(x,y,r,pts){
-    ctx.beginPath();
-    for(var i=0;i<pts.length;i++){
-      var px = x + pts[i][0]*r, py = y + pts[i][1]*r;
-      if(i) ctx.lineTo(px,py); else ctx.moveTo(px,py);
-    }
-    ctx.closePath();
-  }
-  var STAR=[], CROSS=[];
-  for(var i=0;i<16;i++){
-    var a = -Math.PI/2 + i*Math.PI/8, r = (i&1) ? 0.7654 : 1;
-    STAR.push([Math.cos(a)*r, Math.sin(a)*r]);
-  }
-  for(var k=0;k<8;k++){
-    var a2 = -Math.PI/2 + k*Math.PI/4, r2 = (k&1) ? 0.42 : 1;
-    CROSS.push([Math.cos(a2)*r2, Math.sin(a2)*r2]);
-  }
-
-  function mask(w,h){
-    var m = document.createElement('canvas');
-    m.width=w; m.height=h;
-    var c = m.getContext('2d');
-    c.fillStyle='#000'; c.fillRect(0,0,w,h);
-    var size = Math.min(h*0.34, w*0.19);
-    c.textAlign='center'; c.textBaseline='alphabetic'; c.fillStyle='#fff';
-    try{ c.letterSpacing = '0.04em'; }catch(e){}
-    for(var i=0;i<40;i++){
-      c.font = '400 '+size+'px "Archivo Black", "Arial Black", sans-serif';
-      if(c.measureText('SADAF').width <= w*0.74) break;
-      size *= 0.94;
-    }
-    c.font = '400 '+size+'px "Archivo Black", "Arial Black", sans-serif';
-    var met = c.measureText('SADAF');
-    var cap = met.actualBoundingBoxAscent || size*0.7;
-    c.fillText('SADAF', w/2, h*0.80 + cap/2);
-    return c.getImageData(0,0,w,h).data;
-  }
-
-  function build(){
-    var rect = cv.getBoundingClientRect();
-    W = Math.max(280, Math.round(rect.width));
-    H = Math.max(160, Math.round(rect.height));
-    var dpr = Math.min(window.devicePixelRatio||1, 2);
-    cv.width = W*dpr; cv.height = H*dpr;
-    ctx.setTransform(dpr,0,0,dpr,0,0);
-
-    sp = W < 620 ? 13 : (W < 900 ? 16 : 19);
-    R = sp*0.50;
-
-    var px = mask(W,H);
-    S = [];
-    var j = 0;
-    for(var y = 0; y < H + sp; y += sp/2, j++){
-      var off = (j % 2) ? sp/2 : 0;
-      for(var x = off; x < W + sp; x += sp){
-        var gx = Math.min(W-1, Math.max(0, Math.round(x)));
-        var gy = Math.min(H-1, Math.max(0, Math.round(y)));
-        var inWord = px[((gy*W)+gx)*4] > 130;
-        var star = (j % 2) === 0;
-        var col = Math.round((x - off)/sp);
-        var g = inWord
-          ? GLAZE_NAME[(col*3 + j*5) % GLAZE_NAME.length]
-          : GLAZE_WALL[(col*3 + j*5 + 4) % GLAZE_WALL.length];
-        S.push({x:x, y:y, col:col, row:j, star:star, inWord:inWord, g:g, ph:x*0.03+y*0.05, lit:0, boost:0});
-      }
-    }
-    /* the honest count, for the caption */
-    el('tileN').textContent = S.length.toLocaleString('en-GB');
-
-    /* a handful of nazar beads set into the wall, never over the name.
-       one per coarse cell, jittered inside it, so they scatter without striping */
-    var hash = function(a,b){ var v = Math.sin(a*127.1 + b*311.7)*43758.5453; return v - Math.floor(v); };
-    var byKey = new Map();
-    S.forEach(function(t){ if(t.star) byKey.set(t.col+':'+t.row, t); });
-    var cellC = W < 620 ? 8 : 13, cellR = W < 620 ? 11 : 16;
-    var maxC = Math.ceil(W/sp), maxR = Math.ceil(H/(sp/2));
-    EYES = [];
-    for(var ci=0; ci*cellC < maxC; ci++){
-      for(var ri=0; ri*cellR < maxR; ri++){
-        var c2 = ci*cellC + Math.floor(hash(ci*13+7, ri*29+3)*cellC);
-        var r3 = ri*cellR + Math.floor(hash(ci*53+11, ri*17+5)*cellR);
-        if(r3 % 2) r3++;
-        var t = byKey.get(c2+':'+r3);
-        if(!t || t.inWord) continue;
-        /* keep clear of the name, of each other, and of the bead on the crown */
-        var clash = false;
-        for(var dc=-1; dc<=1 && !clash; dc++)
-          for(var dr=-2; dr<=2 && !clash; dr+=2){
-            var n = byKey.get((t.col+dc)+':'+(t.row+dr));
-            if(n && n.inWord) clash = true;
-          }
-        if(clash) continue;
-        if(t.y < H*0.17 && Math.abs(t.x - W/2) < W*0.12) continue;
-        var far = EYES.every(function(e){ return Math.hypot(e.x-t.x, e.y-t.y) >= R*4.2; });
-        if(!far) continue;
-        /* each bead blinks on its own schedule; a few seconds apart, never in unison */
-        t.blinkAt = 2 + hash(t.x, t.y)*6;
-        EYES.push(t);
-      }
-    }
-  }
-
-  function paint(now){
-    var t = (now - t0)/1000;
-    var wave = RM ? 99 : t/1.25;
-    var waveY = H + 120 - Math.min(wave,1.4)*(H+240);
-
-    ctx.clearRect(0,0,W,H);
-    /* the wall behind the tiles */
-    ctx.fillStyle = '#250C40';
-    ctx.fillRect(0,0,W,H);
-
-    for(var i=0;i<S.length;i++){
-      var s = S[i];
-      var target = s.inWord ? 1 : 0;
-      if(!RM){
-        var d = Math.abs(s.y - waveY);
-        if(wave < 1.4 && d < 150) target = Math.max(target, 1 - d/150);
-      }
-      if(ptr.live){
-        var dx = s.x-ptr.x, dy = s.y-ptr.y;
-        var dd = Math.sqrt(dx*dx+dy*dy);
-        if(dd < 82) s.boost = Math.max(s.boost, 1 - dd/82);
-      }
-      s.lit += (target - s.lit) * (RM ? 1 : 0.10);
-      s.boost *= 0.955;
-      var v = Math.max(0, Math.min(1, s.lit + s.boost));
-
-      var r = s.star ? R : R*0.62;
-      var pts = s.star ? STAR : CROSS;
-
-      poly(s.x, s.y, r, pts);
-      ctx.fillStyle = 'hsl(271 40% '+(s.star?27:22)+'%)';
-      ctx.fill();
-
-      if(v > 0.04){
-        ctx.globalAlpha = v;
-        ctx.fillStyle = 'hsl('+s.g[0]+' '+s.g[1]+'% '+s.g[2]+'%)';
-        ctx.fill();
-        ctx.globalAlpha = 1;
-      }
-
-      /* the gypsum line between tiles, gilded where the glaze sits */
-      ctx.lineWidth = 1;
-      ctx.strokeStyle = v > 0.2
-        ? 'rgba(242,215,154,'+((s.inWord?0.42:0.28)+v*0.55)+')'
-        : 'rgba(217,164,65,.36)';
-      ctx.stroke();
-
-      if(v > 0.45 && s.star){
-        ctx.fillStyle = 'rgba(255,255,255,'+((v-0.45)*0.40)+')';
-        ctx.beginPath();
-        ctx.arc(s.x - r*0.24, s.y - r*0.28, r*0.20, 0, 6.2832);
-        ctx.fill();
-      }
-    }
-
-    var er = R*1.55;
-    for(var q=0;q<EYES.length;q++){
-      var e = EYES[q];
-      var px2 = 0, py2 = 0;
-      if(ptr.live){
-        var ex = ptr.x - e.x, ey = ptr.y - e.y;
-        var ed = Math.sqrt(ex*ex + ey*ey) || 1;
-        var m = Math.min(er*0.26, ed*0.10);
-        px2 = ex/ed*m; py2 = ey/ed*m;
-      }else if(!RM){
-        px2 = Math.cos(t*0.55 + e.ph)*er*0.15;
-        py2 = Math.sin(t*0.41 + e.ph)*er*0.11;
-      }
-      ctx.beginPath(); ctx.arc(e.x+1.5, e.y+2.5, er*1.02, 0, 6.2832);
-      ctx.fillStyle = 'rgba(0,0,0,.38)'; ctx.fill();
-      ctx.beginPath(); ctx.arc(e.x,e.y,er,0,6.2832);
-      ctx.fillStyle = '#12306E'; ctx.fill();
-      ctx.lineWidth = 1; ctx.strokeStyle = 'rgba(217,164,65,.6)'; ctx.stroke();
-      ctx.beginPath(); ctx.arc(e.x,e.y,er*0.72,0,6.2832); ctx.fillStyle='#F5EDE0'; ctx.fill();
-      ctx.beginPath(); ctx.arc(e.x,e.y,er*0.44,0,6.2832); ctx.fillStyle='#2BB8AC'; ctx.fill();
-      ctx.beginPath(); ctx.arc(e.x+px2,e.y+py2,er*0.19,0,6.2832); ctx.fillStyle='#0B1226'; ctx.fill();
-
-      /* the blink: a lid the colour of the ring closes and opens over ~0.18s */
-      if(!RM){
-        var since = t - e.blinkAt;
-        if(since > 0.18){
-          /* a bead blinks whenever it's being poked, otherwise every 4–9 seconds */
-          e.blinkAt = t + (ptr.live && Math.hypot(ptr.x-e.x, ptr.y-e.y) < 60 ? 0.6 : 4 + ((e.x*7 + e.y*3 + q*11) % 50)/10);
-        }else if(since >= 0){
-          var k = Math.sin(since/0.18*Math.PI);
-          ctx.beginPath();
-          ctx.ellipse(e.x, e.y, er*1.03, er*1.03*k, 0, 0, 6.2832);
-          ctx.fillStyle = '#12306E'; ctx.fill();
-        }
-      }
-    }
-
-    if(!RM) raf = requestAnimationFrame(paint);
-  }
-
-  function start(){
-    build();
-    if(raf) cancelAnimationFrame(raf);
-    t0 = performance.now();
-    if(RM){ S.forEach(function(s){ s.lit = s.inWord?1:0; }); paint(performance.now()); }
-    else raf = requestAnimationFrame(paint);
-  }
-
-  var hintEl = el('hint');
-  function move(e){
-    var b = cv.getBoundingClientRect();
-    var p = e.touches ? e.touches[0] : e;
-    ptr.x = p.clientX - b.left; ptr.y = p.clientY - b.top; ptr.live = true;
-    hintEl.classList.add('is-gone');
-    if(RM) paint(performance.now());
-  }
-  cv.addEventListener('pointermove', move);
-  cv.addEventListener('touchmove', move, {passive:true});
-  cv.addEventListener('pointerleave', function(){ ptr.live=false; });
-
-  var rt;
-  window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(start, 220); });
-  if(document.fonts && document.fonts.ready) document.fonts.ready.then(start);
-  start();
-})();
+var hintEl = el('hint');
+SadafDome(el('inlay'), {
+  word: 'SADAF',
+  static: RM,
+  onCount: function(n){ el('tileN').textContent = n.toLocaleString('en-GB'); },
+  onPointer: function(){ hintEl.classList.add('is-gone'); }
+});
 
 /* ============================================================
    COUNTDOWN — to the earlier of the two dates
@@ -1083,6 +942,14 @@ if(PARTY.decided){
     c.style.animationDelay = (-(i*0.37) % 1.15).toFixed(2) + 's';
     c.style.animationDuration = (0.9 + ((i*7) % 5)*0.09).toFixed(2) + 's';
     candles.appendChild(c);
+  }
+  /* and thirty on the cake emblem, which is why it looks like that */
+  var g = el('cakeCandles'), NS = 'http://www.w3.org/2000/svg';
+  for(var k=0;k<30;k++){
+    var l = document.createElementNS(NS,'line');
+    var x = (31 + k*38/29).toFixed(2);
+    l.setAttribute('x1',x); l.setAttribute('x2',x); l.setAttribute('y1','46'); l.setAttribute('y2','33');
+    g.appendChild(l);
   }
 })();
 

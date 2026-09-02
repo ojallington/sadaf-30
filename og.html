@@ -6,53 +6,67 @@
 body{width:1200px;height:630px;overflow:hidden;background:#2A0E44;font-family:"Vazirmatn",sans-serif;position:relative}
 .bg{position:absolute;inset:0;width:100%;height:100%;opacity:.17}
 .glow{position:absolute;inset:0;background:
-  radial-gradient(760px 520px at 50% -12%,rgba(217,164,65,.24),transparent 66%),
-  radial-gradient(700px 620px at 6% 60%,rgba(43,184,172,.13),transparent 64%),
-  radial-gradient(700px 600px at 96% 84%,rgba(192,53,95,.15),transparent 64%)}
+  radial-gradient(760px 520px at 28% 10%,rgba(217,164,65,.22),transparent 66%),
+  radial-gradient(700px 620px at 96% 84%,rgba(192,53,95,.15),transparent 64%)}
 .frame{position:absolute;inset:26px;border:1.5px solid rgba(217,164,65,.42)}
 .frame::after{content:"";position:absolute;inset:9px;border:1px solid rgba(217,164,65,.2)}
-.in{position:relative;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 90px}
-.nas{font-family:"Noto Nastaliq Urdu",serif;font-size:56px;color:#F2D79A;line-height:1.9;direction:rtl;margin-bottom:0}
-.kick{font-size:15px;letter-spacing:.32em;text-transform:uppercase;color:#F2D79A;font-weight:500;margin-bottom:22px}
-h1{font-family:"Amiri",serif;font-style:italic;font-weight:400;font-size:112px;line-height:1;color:#F7EFE0;letter-spacing:-.01em}
-h1 em{font-style:italic;color:#D9A441}
-.rule{display:flex;align-items:center;gap:16px;margin:26px 0 22px}
-.rule i{display:block;height:1px;width:150px;background:linear-gradient(90deg,rgba(217,164,65,0),rgba(217,164,65,.85))}
+.taq{position:absolute;left:52px;top:44px;width:540px;height:542px;filter:drop-shadow(0 30px 40px rgba(0,0,0,.7))}
+#inlay{display:block;width:540px;height:542px;clip-path:url(#taqClip)}
+.arch{position:absolute;inset:0;width:100%;height:100%}
+.in{position:absolute;left:640px;top:0;width:500px;height:630px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.nas{font-family:"Noto Nastaliq Urdu",serif;font-size:50px;color:#F2D79A;line-height:1.9;direction:rtl}
+.kick{font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:#F2D79A;font-weight:500;margin-bottom:16px}
+h1{font-family:"Amiri",serif;font-style:italic;font-weight:400;font-size:96px;line-height:1;color:#F7EFE0;letter-spacing:-.01em}
+h1 em{font-style:italic;background:linear-gradient(175deg,#FFF1C2,#F2D79A 30%,#D9A441 55%,#8A5E14 78%,#F2D79A);-webkit-background-clip:text;background-clip:text;color:transparent}
+.rule{display:flex;align-items:center;gap:14px;margin:22px 0 18px}
+.rule i{display:block;height:1px;width:110px;background:linear-gradient(90deg,rgba(217,164,65,0),rgba(217,164,65,.85))}
 .rule i:last-child{background:linear-gradient(90deg,rgba(217,164,65,.85),rgba(217,164,65,0))}
 .daterow{position:relative;display:inline-block}
-.date{font-family:"Amiri",serif;font-weight:700;font-size:44px;color:#F2D79A;line-height:1.1}
+.date{font-family:"Amiri",serif;font-weight:700;font-size:38px;color:#F2D79A;line-height:1.1}
 .stamp{
-  position:absolute;right:-300px;top:-48px;
-  font-family:"Archivo Black",Impact,sans-serif;font-size:22px;letter-spacing:.14em;text-transform:uppercase;line-height:1;
-  color:#D8436F;background:#F7EFE0;padding:14px 18px 12px;border:3px solid #D8436F;border-radius:4px;
+  position:absolute;left:50%;top:-58px;margin-left:-125px;
+  font-family:"Archivo Black",Impact,sans-serif;font-size:19px;letter-spacing:.14em;text-transform:uppercase;line-height:1;
+  color:#D8436F;background:#F7EFE0;padding:12px 16px 10px;border:3px solid #D8436F;border-radius:4px;
   box-shadow:inset 0 0 0 3px #F7EFE0,inset 0 0 0 5px #D8436F,0 14px 30px -14px rgba(0,0,0,.8);
-  transform:rotate(-8deg);white-space:nowrap;
+  transform:rotate(-7deg);white-space:nowrap;
   -webkit-mask-image:radial-gradient(circle at 30% 40%,#000 0 55%,rgba(0,0,0,.72) 56% 100%);
           mask-image:radial-gradient(circle at 30% 40%,#000 0 55%,rgba(0,0,0,.72) 56% 100%)}
-.stamp small{display:block;font-size:11px;letter-spacing:.2em;margin-top:5px;font-family:"Vazirmatn",sans-serif;font-weight:700}
-.meta{font-size:19px;color:#C9B2E0;font-weight:300;letter-spacing:.05em;margin-top:16px}
+.stamp small{display:block;font-size:10px;letter-spacing:.2em;margin-top:4px;font-family:"Vazirmatn",sans-serif;font-weight:700}
+.meta{font-size:17px;color:#C9B2E0;font-weight:300;letter-spacing:.04em;margin-top:14px;line-height:1.5}
 .meta b{color:#2BB8AC;font-weight:600}
-.meta em{font-family:"Amiri",serif;font-style:italic;color:#F2D79A;font-size:22px;font-weight:400;letter-spacing:0}
+.meta em{font-family:"Amiri",serif;font-style:italic;color:#F2D79A;font-size:21px;font-weight:400;letter-spacing:0}
 </style></head><body>
-<svg class="bg"><defs>
+<svg width="0" height="0" style="position:absolute"><defs>
+<clipPath id="taqClip" clipPathUnits="objectBoundingBox"><path d="M0,1 L0,0.58 C0,0.30 0.38,0.12 0.5,0 C0.62,0.12 1,0.30 1,0.58 L1,1 Z"/></clipPath>
 <path id="s18" d="M0,-18 L5.272,-12.728 L12.728,-12.728 L12.728,-5.272 L18,0 L12.728,5.272 L12.728,12.728 L5.272,12.728 L0,18 L-5.272,12.728 L-12.728,12.728 L-12.728,5.272 L-18,0 L-12.728,-5.272 L-12.728,-12.728 L-5.272,-12.728 Z"/>
 <path id="x12" d="M0,-12 L3.564,-3.564 L12,0 L3.564,3.564 L0,12 L-3.564,3.564 L-12,0 L-3.564,-3.564 Z"/>
 <pattern id="g" width="72" height="72" patternUnits="userSpaceOnUse"><g fill="none" stroke="#D9A441" stroke-width="1.15">
 <use href="#s18" x="0" y="0"/><use href="#s18" x="72" y="0"/><use href="#s18" x="0" y="72"/><use href="#s18" x="72" y="72"/><use href="#s18" x="36" y="36"/>
 <use href="#x12" x="36" y="0"/><use href="#x12" x="0" y="36"/><use href="#x12" x="72" y="36"/><use href="#x12" x="36" y="72"/></g></pattern>
-</defs><rect width="100%" height="100%" fill="url(#g)"/></svg>
+</defs></svg>
+<svg class="bg"><rect width="100%" height="100%" fill="url(#g)"/></svg>
 <div class="glow"></div><div class="frame"></div>
+<div class="taq">
+  <canvas id="inlay" width="540" height="542"></canvas>
+  <svg class="arch" viewBox="0 0 1 1" preserveAspectRatio="none"><g fill="none" stroke="#D9A441">
+    <path d="M0,1 L0,0.58 C0,0.30 0.38,0.12 0.5,0 C0.62,0.12 1,0.30 1,0.58 L1,1 Z" stroke-width="2.6" vector-effect="non-scaling-stroke"/>
+    <path d="M0,1 L0,0.58 C0,0.30 0.38,0.12 0.5,0 C0.62,0.12 1,0.30 1,0.58 L1,1 Z" transform="translate(0.5,1) scale(0.965) translate(-0.5,-1)" stroke-width="1" stroke-opacity=".55" vector-effect="non-scaling-stroke"/>
+  </g></svg>
+</div>
 <div class="in">
   <p class="nas" dir="rtl" lang="fa">صدف</p>
   <p class="kick">Sadaf · mother-of-pearl · a person</p>
   <h1>turns <em>thirty</em></h1>
   <div class="rule"><i></i>
-    <svg width="17" height="17" viewBox="-1.1 -1.1 2.2 2.2"><path d="M0,-1 L0.2929,-0.7071 L0.7071,-0.7071 L0.7071,-0.2929 L1,0 L0.7071,0.2929 L0.7071,0.7071 L0.2929,0.7071 L0,1 L-0.2929,0.7071 L-0.7071,0.7071 L-0.7071,0.2929 L-1,0 L-0.7071,-0.2929 L-0.7071,-0.7071 L-0.2929,-0.7071 Z" fill="#D9A441"/></svg>
+    <svg width="15" height="15" viewBox="-1.1 -1.1 2.2 2.2"><path d="M0,-1 L0.2929,-0.7071 L0.7071,-0.7071 L0.7071,-0.2929 L1,0 L0.7071,0.2929 L0.7071,0.7071 L0.2929,0.7071 L0,1 L-0.2929,0.7071 L-0.7071,0.7071 L-0.7071,0.2929 L-1,0 L-0.7071,-0.2929 L-0.7071,-0.7071 L-0.2929,-0.7071 Z" fill="#D9A441"/></svg>
   <i></i></div>
   <div class="daterow">
-    <p class="date">26 or 27 September 2026</p>
     <span class="stamp">to be confirmed<small>by a WhatsApp poll</small></span>
+    <p class="date">26 or 27 September 2026</p>
   </div>
-  <p class="meta">A house to dress &nbsp;·&nbsp; a zoo &nbsp;·&nbsp; thirty candles on one cake</p>
+  <p class="meta">A house to dress · a zoo · thirty candles on one cake</p>
   <p class="meta">Dress code <b>purple &amp; gold</b>, <em>and I mean it.</em></p>
-</div></body></html>
+</div>
+<script src="dome.js"></script>
+<script>SadafDome(document.getElementById('inlay'), {word:'SADAF', static:true});</script>
+</body></html>
