@@ -11,12 +11,15 @@
 <meta property="og:title" content="Sadaf turns thirty">
 <meta property="og:description" content="26 or 27 September 2026 — a poll will decide. A house to dress, a surprise at Blijdorp, thirty candles on one cake. Dress code: purple and gold, and I mean it. Say nothing.">
 <meta property="og:url" content="https://ojallington.github.io/sadaf-30/">
-<meta property="og:image" content="https://ojallington.github.io/sadaf-30/og.png">
+<meta property="og:image" content="https://ojallington.github.io/sadaf-30/og.jpg">
+<meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="en_GB">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#2A0E44">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27-1.1 -1.1 2.2 2.2%27%3E%3Ccircle r=%271%27 fill=%27%2312306E%27 stroke=%27%23D9A441%27 stroke-width=%27.09%27/%3E%3Ccircle r=%27.72%27 fill=%27%23F5EDE0%27/%3E%3Ccircle r=%27.44%27 fill=%27%232BB8AC%27/%3E%3Ccircle r=%27.19%27 fill=%27%230B1226%27/%3E%3C/svg%3E">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -123,7 +126,7 @@ button{font:inherit; color:inherit}
 }
 .taq__cap{
   margin:10px auto 0; font-size:11px; letter-spacing:.14em; text-transform:uppercase;
-  color:rgba(201,178,224,.62); font-weight:500; max-width:40ch; line-height:1.6;
+  color:rgba(201,178,224,.8); font-weight:500; max-width:40ch; line-height:1.6;
 }
 .taq__cap b{color:var(--zar-2); font-weight:600; font-variant-numeric:tabular-nums}
 
@@ -164,7 +167,8 @@ button{font:inherit; color:inherit}
 .btn--outline:hover{background:rgba(217,164,65,.24); transform:translateY(-2px)}
 .btn--wa{background:var(--sabz); color:#FFF}
 .btn--wa:hover{transform:translateY(-2px); filter:brightness(1.14)}
-.btn[disabled]{opacity:.45; cursor:not-allowed; transform:none!important}
+.btn.is-idle{opacity:.55}
+.btn.is-idle:hover{transform:none}
 .btn svg{width:17px; height:17px; flex:none}
 
 .count{
@@ -175,7 +179,7 @@ button{font:inherit; color:inherit}
 .count__u{text-align:center; min-width:56px}
 .count__n{font-family:var(--display); font-weight:400; font-size:clamp(30px,5.4vw,46px); line-height:1; color:var(--zar-2); font-variant-numeric:tabular-nums}
 .count__l{font-size:10px; letter-spacing:.24em; text-transform:uppercase; color:var(--roshan); margin-top:8px}
-.count__cap{font-size:10.5px; letter-spacing:.18em; text-transform:uppercase; color:rgba(201,178,224,.66); text-align:center; margin:12px auto 0; max-width:44ch; line-height:1.7}
+.count__cap{font-size:10.5px; letter-spacing:.18em; text-transform:uppercase; color:rgba(201,178,224,.82); text-align:center; margin:12px auto 0; max-width:44ch; line-height:1.7}
 
 /* ============================================================
    SECTION CREST
@@ -273,7 +277,7 @@ button{font:inherit; color:inherit}
 .secret b{color:#7A2050; font-weight:700; letter-spacing:.12em; text-transform:uppercase; font-size:11px; display:block; margin-bottom:3px}
 
 /* thirty candles, pictured for the fire brigade */
-.candles{display:flex; flex-wrap:wrap; justify-content:center; gap:14px 7px; max-width:420px; margin:28px auto 0; padding-top:6px}
+.candles{display:flex; flex-wrap:wrap; justify-content:center; gap:14px 6px; max-width:150px; margin:28px auto 0; padding-top:6px}
 .candles i{
   position:relative; display:block; width:4px; height:16px; border-radius:1px;
   background:linear-gradient(180deg,#F2D79A,#C8952E);
@@ -331,13 +335,13 @@ button{font:inherit; color:inherit}
 .places{text-align:center; padding-bottom:24px; border-bottom:1px solid rgba(217,164,65,.5)}
 .places__n{font-family:var(--display); font-size:clamp(30px,5vw,42px); font-weight:700; line-height:1; margin:0}
 .places__l{font-size:11px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--matn-2); margin:8px 0 0}
-.pips{display:flex; flex-wrap:wrap; gap:6px; justify-content:center; margin:18px auto 0; max-width:320px}
+.pips{display:flex; flex-wrap:wrap; gap:5px; justify-content:center; margin:18px auto 0; max-width:270px}
 .pip{
-  width:15px; height:15px; border-radius:50%;
+  width:13px; height:13px; border-radius:50%;
   box-shadow:0 0 0 1px rgba(217,164,65,.55);
   background:radial-gradient(circle, #0B1226 0 19%, #2BB8AC 19% 44%, #F5EDE0 44% 72%, #12306E 72% 100%);
 }
-.pips__l{font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:rgba(110,76,137,.7); margin:10px 0 0; font-weight:500}
+.pips__l{font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:rgba(110,76,137,.9); margin:10px 0 0; font-weight:500}
 
 .field{margin-top:24px}
 .field[hidden]{display:none}
@@ -467,6 +471,16 @@ textarea.input{resize:vertical; min-height:78px}
 .plaque__cap{font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:rgba(201,178,224,.6); margin:0 0 22px; font-weight:500}
 
 #burst{position:fixed; inset:0; pointer-events:none; z-index:60}
+.pill{
+  position:fixed; right:16px; bottom:calc(16px + env(safe-area-inset-bottom)); z-index:50;
+  padding:12px 20px; border-radius:999px; text-decoration:none;
+  font-weight:700; font-size:14px; letter-spacing:.04em; color:#3A1408;
+  background:linear-gradient(168deg,var(--zar-2),var(--zar));
+  box-shadow:0 10px 24px -8px rgba(0,0,0,.7), 0 0 0 1px rgba(255,241,194,.5) inset;
+  transform:translateY(0); opacity:1; transition:transform .25s ease, opacity .25s ease;
+}
+.pill.is-hidden{transform:translateY(120%); opacity:0; pointer-events:none}
+@media (min-width:900px){.pill{display:none}}
 
 @media (max-width:600px){
   .frame{inset:6px}
@@ -479,7 +493,7 @@ textarea.input{resize:vertical; min-height:78px}
   .niche{width:84px; height:110px; margin-top:-58px}
   .niche svg{width:56px; height:56px; margin-top:30px}
   .swatches{grid-template-columns:repeat(3,1fr)}
-  .candles{gap:14px 6px; max-width:300px}
+  .candles{max-width:150px}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -745,8 +759,8 @@ textarea.input{resize:vertical; min-height:78px}
       </div>
 
       <div class="field" id="dateField">
-        <span class="field__label">Which date suits you?</span>
-        <div class="opts trio">
+        <span class="field__label" id="dateLabel">Which date suits you?</span>
+        <div class="opts trio" role="radiogroup" aria-labelledby="dateLabel">
           <label class="opt" data-d="Sat 26"><input type="radio" name="dt" value="Sat 26"><span><span class="opt__t">Sat 26</span><span class="opt__d">the long night</span></span></label>
           <label class="opt" data-d="Sun 27"><input type="radio" name="dt" value="Sun 27"><span><span class="opt__t">Sun 27</span><span class="opt__d">the sensible one</span></span></label>
           <label class="opt" data-d="Either"><input type="radio" name="dt" value="Either" checked><span><span class="opt__t">Either</span><span class="opt__d">the honest one</span></span></label>
@@ -754,8 +768,8 @@ textarea.input{resize:vertical; min-height:78px}
       </div>
 
       <div class="field">
-        <span class="field__label">Which parts are you coming to?</span>
-        <div class="opts">
+        <span class="field__label" id="partsLabel">Which parts are you coming to?</span>
+        <div class="opts" role="group" aria-labelledby="partsLabel">
           <label class="opt" id="optPrep">
             <input type="checkbox" id="cPrep">
             <span>
@@ -783,8 +797,8 @@ textarea.input{resize:vertical; min-height:78px}
         </div>
 
         <div class="tickets" id="tickets" hidden>
-          <p class="tickets__h">Your zoo ticket</p>
-          <div class="opts">
+          <p class="tickets__h" id="tkLabel">Your zoo ticket</p>
+          <div class="opts" role="radiogroup" aria-labelledby="tkLabel">
             <label class="opt"><input type="radio" name="tk" value="I'll book once the date is set"><span><span class="opt__t">I'll book once the date is set</span><span class="opt__d">Correct.</span></span></label>
             <label class="opt"><input type="radio" name="tk" value="I have a Blijdorp pass"><span><span class="opt__t">I have a Blijdorp pass</span><span class="opt__d">Show-off.</span></span></label>
           </div>
@@ -865,6 +879,7 @@ textarea.input{resize:vertical; min-height:78px}
   </footer>
 
 </div>
+<a class="pill" id="pill" href="#reply">Reply</a>
 <canvas id="burst" aria-hidden="true"></canvas>
 
 <script src="dome.js"></script>
@@ -1010,13 +1025,13 @@ function refresh(){
   var box = el('draft');
   if(text){
     box.textContent = text;
-    el('send').disabled = false;
-    el('copy').disabled = false;
+    el('send').classList.remove('is-idle');
+    el('copy').classList.remove('is-idle');
     el('stamp').textContent = text.length + ' characters';
   }else{
     box.innerHTML = '<em>Fill in your name and tick a part of the day — your message appears here, already written.</em>';
-    el('send').disabled = true;
-    el('copy').disabled = true;
+    el('send').classList.add('is-idle');
+    el('copy').classList.add('is-idle');
     el('stamp').textContent = '';
   }
   return text;
@@ -1028,9 +1043,15 @@ document.querySelectorAll('#name, #note, #cPrep, #cZoo, #cParty, #cPlus, #plusNa
     i.addEventListener('change', refresh);
   });
 
+function nudge(){
+  var noName = !el('name').value.trim();
+  el('msg').textContent = noName ? 'Add your name first, so we know whose message this is.' : 'Tick at least one part of the day.';
+  (noName ? el('name') : el('cParty')).focus();
+}
+
 el('send').addEventListener('click', function(){
   var text = refresh();
-  if(!text){ el('msg').textContent = 'Add your name and tick at least one part of the day.'; return; }
+  if(!text){ nudge(); return; }
   el('msg').textContent = '';
   if(!RM) burst();
   window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank', 'noopener');
@@ -1038,7 +1059,7 @@ el('send').addEventListener('click', function(){
 
 el('copy').addEventListener('click', function(){
   var text = refresh();
-  if(!text){ el('msg').textContent = 'Add your name and tick at least one part of the day.'; return; }
+  if(!text){ nudge(); return; }
   var done = function(){
     el('copy').textContent = 'Copied — now paste it in the group';
     setTimeout(function(){ el('copy').textContent = 'Copy the message'; }, 2600);
@@ -1142,6 +1163,17 @@ function burst(){
 }
 
 refresh();
+
+/* the reply pill shows once the hero has gone by, and hides while the form is on screen */
+(function pill(){
+  var p = el('pill'), hero = document.querySelector('.hero'), form = el('reply');
+  if(!('IntersectionObserver' in window)){ return; }
+  var heroIn = true, formIn = false;
+  function sync(){ p.classList.toggle('is-hidden', heroIn || formIn); }
+  new IntersectionObserver(function(es){ heroIn = es[0].isIntersecting; sync(); }, {threshold:0.05}).observe(hero);
+  new IntersectionObserver(function(es){ formIn = es[0].isIntersecting; sync(); }, {threshold:0.05}).observe(form);
+  sync();
+})();
 </script>
 </body>
 </html>

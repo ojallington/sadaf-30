@@ -23,3 +23,7 @@ form, which are hidden automatically. The composed message drops its date line t
 
     chromium --headless --no-sandbox --window-size=1200,630 \
       --virtual-time-budget=8000 --screenshot=og.png file://$PWD/og.html
+    magick og.png -quality 84 -sampling-factor 4:2:0 -strip og.jpg
+
+The page links `og.jpg`, not the PNG: WhatsApp only shows preview images under
+about 300 KB. Keep an eye on the size after regenerating.
