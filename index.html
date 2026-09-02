@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Sadaf Turns Thirty</title>
-<meta name="description" content="One day in three parts in Rotterdam and Schiedam — 26 or 27 September 2026. Purple and gold. Twenty places.">
+<meta name="description" content="One day in three parts in Rotterdam and Schiedam — 26 or 27 September 2026. Purple and gold. Bring someone.">
 
 <!-- link preview (WhatsApp, Signal, iMessage) -->
 <meta property="og:type" content="website">
@@ -288,6 +288,8 @@ textarea.input{resize:vertical; min-height:78px}
 .trio .opt{flex-direction:column; align-items:center; text-align:center; gap:8px; padding:14px 8px}
 .trio .opt input{margin:0}
 .trio .opt__t{font-size:14px}
+#plusName{margin-top:10px}
+#plusName[hidden]{display:none}
 
 .tickets{margin-top:14px; padding:16px; border:1px solid rgba(18,117,108,.4); background:rgba(43,184,172,.08)}
 .tickets[hidden]{display:none}
@@ -394,7 +396,7 @@ textarea.input{resize:vertical; min-height:78px}
       <svg class="oct" viewBox="-1.1 -1.1 2.2 2.2"><use href="#oct" fill="currentColor"/></svg>
       <p>Rotterdam &amp; Schiedam</p>
       <svg class="oct" viewBox="-1.1 -1.1 2.2 2.2"><use href="#oct" fill="currentColor"/></svg>
-      <p>Twenty places</p>
+      <p>Plus ones welcome</p>
     </div>
 
     <div class="taq">
@@ -418,7 +420,7 @@ textarea.input{resize:vertical; min-height:78px}
     </p>
 
     <h1 class="hero__line">turns <em>thirty</em></h1>
-    <p class="hero__sub">One day in three parts: dressing the house, an afternoon among the animals, and a night of food and noise. Twenty places, and the date is being settled this week.</p>
+    <p class="hero__sub">One day in three parts: dressing the house, an afternoon among the animals, and a night of food and noise. Bring someone if you like — the date is being settled this week.</p>
 
     <div class="cta-row">
       <a class="btn btn--gold" href="#reply">Reply</a>
@@ -533,13 +535,13 @@ textarea.input{resize:vertical; min-height:78px}
         <svg class="bead" viewBox="-1.1 -1.1 2.2 2.2"><use href="#nazar"/></svg>
       </div>
       <h2 class="sec__title">Reply</h2>
-      <p class="sec__note">Tick what you're coming to and this writes your message. Send it into the group — the group is the guest list, and the first twenty replies have a place.</p>
+      <p class="sec__note">Tick what you're coming to and this writes your message. Send it into the group — the group is the guest list, and it's the head count we're cooking for.</p>
     </div>
 
     <div class="rsvp panel">
       <div class="places">
-        <p class="places__n">Twenty places</p>
-        <p class="places__l">claimed in the group, in reply order</p>
+        <p class="places__n">Bring someone</p>
+        <p class="places__l">plus ones welcome — just say who</p>
         <div class="pips" id="pips" aria-hidden="true"></div>
       </div>
 
@@ -596,8 +598,22 @@ textarea.input{resize:vertical; min-height:78px}
       </div>
 
       <div class="field">
+        <span class="field__label">Bringing someone?</span>
+        <div class="opts">
+          <label class="opt" id="optPlus">
+            <input type="checkbox" id="cPlus">
+            <span>
+              <span class="opt__t">Yes, a plus one</span>
+              <span class="opt__d">Anyone not already in the group is welcome — tell us who so we lay a place</span>
+            </span>
+          </label>
+        </div>
+        <input class="input" id="plusName" type="text" autocomplete="off" placeholder="Their name" hidden>
+      </div>
+
+      <div class="field">
         <label class="field__label" for="note">Anything we should know? <span style="text-transform:none;letter-spacing:0">(optional)</span></label>
-        <textarea class="input" id="note" placeholder="Allergies, arriving late, bringing someone, can't do stairs…"></textarea>
+        <textarea class="input" id="note" placeholder="Allergies, arriving late, leaving early, can&#39;t do stairs…"></textarea>
       </div>
 
       <p class="msg" id="msg" role="status"></p>
@@ -625,7 +641,7 @@ textarea.input{resize:vertical; min-height:78px}
 
     <div class="how">
       <div class="how__r"><span class="how__n">۱</span><p class="how__t"><b>Vote on the date</b> in the group poll — Saturday the 26th or Sunday the 27th.</p></div>
-      <div class="how__r"><span class="how__n">۲</span><p class="how__t"><b>Send your reply</b> into the group. The first twenty have a place; after that it's a waiting list, and people always drop.</p></div>
+      <div class="how__r"><span class="how__n">۲</span><p class="how__t"><b>Send your reply</b> into the group, so we know how many to cook for and how many chairs to find.</p></div>
       <div class="how__r"><span class="how__n">۳</span><p class="how__t"><b>Wait to book Blijdorp</b> until the date is confirmed — then buy your own day ticket.</p></div>
       <div class="how__r"><span class="how__n">۴</span><p class="how__t"><b>Not a word to Sadaf</b> about the house at midday. The rest she knows about.</p></div>
     </div>
@@ -923,7 +939,7 @@ el('footDate').textContent = dateText;
   tick();
 })();
 
-/* twenty beads, one per place */
+/* a strand of nazar beads under the heading */
 (function places(){
   var pips = el('pips');
   for(var i=0;i<PARTY.capacity;i++){
@@ -961,6 +977,11 @@ function compose(){
   var tk = el('cZoo').checked ? pick('tk') : null;
   if(tk) lines.push('Zoo ticket: ' + tk);
 
+  if(el('cPlus').checked){
+    var who = el('plusName').value.trim();
+    lines.push('Bringing: ' + (who || 'a plus one (name to follow)'));
+  }
+
   var note = el('note').value.trim().slice(0,400);
   if(note) lines.push('Note: ' + note);
 
@@ -977,6 +998,8 @@ function refresh(){
     o.classList.toggle('is-on', o.querySelector('input').checked);
   });
   el('tickets').hidden = !el('cZoo').checked;
+  el('optPlus').classList.toggle('is-on', el('cPlus').checked);
+  el('plusName').hidden = !el('cPlus').checked;
 
   var text = compose();
   var box = el('draft');
@@ -994,7 +1017,7 @@ function refresh(){
   return text;
 }
 
-document.querySelectorAll('#name, #note, #cPrep, #cZoo, #cParty, input[name="dt"], input[name="tk"]')
+document.querySelectorAll('#name, #note, #cPrep, #cZoo, #cParty, #cPlus, #plusName, input[name="dt"], input[name="tk"]')
   .forEach(function(i){
     i.addEventListener('input', refresh);
     i.addEventListener('change', refresh);
