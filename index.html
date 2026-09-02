@@ -116,30 +116,19 @@ button{font:inherit; color:inherit}
    ============================================================ */
 .hero{padding-block:clamp(24px,5vh,46px) 8px; text-align:center}
 
-.taq{position:relative; width:100%; margin:0 auto; max-width:840px}
-#inlay{display:block; width:100%; height:clamp(240px,36vw,390px); clip-path:url(#taqClip); touch-action:pan-y}
-.taq__frame{position:absolute; inset:0; width:100%; height:100%; pointer-events:none}
-.taq__crown{
-  position:absolute; left:50%; top:-20px; transform:translateX(-50%);
-  width:38px; height:38px;
-  filter:drop-shadow(0 4px 10px rgba(0,0,0,.55));
-}
+.art{position:relative; width:100%; margin:0 auto; max-width:1060px}
+.art sadaf-hero{height:clamp(330px,44vw,480px); filter:drop-shadow(0 30px 40px rgba(0,0,0,.55))}
 .taq__cap{
   margin:10px auto 0; font-size:11px; letter-spacing:.14em; text-transform:uppercase;
   color:rgba(201,178,224,.8); font-weight:500; max-width:40ch; line-height:1.6;
 }
 .taq__cap b{color:var(--zar-2); font-weight:600; font-variant-numeric:tabular-nums}
 
-.sadaf{
-  font-family:var(--nastaliq); font-size:clamp(42px,8vw,66px);
-  line-height:2.05; color:var(--zar-2); margin:2px 0 -6px; direction:rtl;
-}
-.gloss{
+.gloss{margin-top:16px;
+
   display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:6px 14px;
   margin:0; font-size:11px; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:var(--roshan);
 }
-.gloss__h{opacity:.62; transition:opacity .5s ease}
-.gloss__h.is-gone{opacity:0}
 
 .hero__line{
   font-family:var(--display); font-weight:400; font-style:italic;
@@ -430,13 +419,11 @@ textarea.input{resize:vertical; min-height:78px}
 .frame .corner:nth-child(3){left:-15px; bottom:-15px}
 .frame .corner:nth-child(4){right:-15px; bottom:-15px}
 
-.taq{filter:drop-shadow(0 34px 44px rgba(0,0,0,.65))}
-.taq::before{
-  content:""; position:absolute; left:50%; top:8%; width:70%; height:60%; transform:translateX(-50%);
-  background:radial-gradient(closest-side, rgba(242,215,154,.28), rgba(242,215,154,0));
-  filter:blur(30px); z-index:-1; pointer-events:none;
+.art::before{
+  content:""; position:absolute; left:50%; top:0; width:70%; height:55%; transform:translateX(-50%);
+  background:radial-gradient(closest-side, rgba(242,215,154,.22), rgba(242,215,154,0));
+  filter:blur(30px); pointer-events:none;
 }
-#inlay{height:clamp(270px,42vw,440px)}
 .hero__line em{
   background:linear-gradient(175deg,#FFF1C2 0%, var(--zar-2) 30%, var(--zar) 55%, #8A5E14 78%, var(--zar-2) 100%);
   -webkit-background-clip:text; background-clip:text; color:transparent;
@@ -554,22 +541,13 @@ textarea.input{resize:vertical; min-height:78px}
       <p>Plus ones welcome</p>
     </div>
 
-    <div class="taq">
-      <canvas id="inlay" aria-label="A glazed tile dome seen from below, the name Sadaf on an inscription band, a nazar bead for an oculus"></canvas>
-      <svg class="taq__frame" viewBox="0 0 1 1" preserveAspectRatio="none" aria-hidden="true">
-        <g fill="none" stroke="#D9A441">
-          <path d="M0,1 L0,0.58 C0,0.30 0.38,0.12 0.5,0 C0.62,0.12 1,0.30 1,0.58 L1,1 Z" stroke-width="2.4" vector-effect="non-scaling-stroke"/>
-          <path d="M0,1 L0,0.58 C0,0.30 0.38,0.12 0.5,0 C0.62,0.12 1,0.30 1,0.58 L1,1 Z" transform="translate(0.5,1) scale(0.965) translate(-0.5,-1)"
-                stroke-width="1" stroke-opacity=".55" vector-effect="non-scaling-stroke"/>
-        </g>
-      </svg>
+    <div class="art">
+      <sadaf-hero transparent role="img" aria-label="A fan of glazed tiles opening around a pearl with an eye in it, and the name Sadaf in gold beneath"></sadaf-hero>
     </div>
-    <p class="taq__cap"><b id="tileN">—</b> glazed tiles, laid by hand, if a for-loop counts as a hand. The eye in the oculus is quality assurance.</p>
+    <p class="taq__cap">A seashell, a pearl, and an eye that follows you round the room. Tap the pearl; it blinks. That is the whole security system.</p>
 
-    <p class="sadaf" dir="rtl" lang="fa">صدف</p>
     <p class="gloss">
       <span>sadaf · seashell · a person</span>
-      <span class="gloss__h" id="hint">drag across the vault — the eye follows, and blinks</span>
     </p>
 
     <h1 class="hero__line">turns <em>thirty</em></h1>
@@ -882,7 +860,7 @@ textarea.input{resize:vertical; min-height:78px}
 <a class="pill" id="pill" href="#reply">Reply</a>
 <canvas id="burst" aria-hidden="true"></canvas>
 
-<script src="dome.js"></script>
+<script src="sadaf-hero.js"></script>
 <script>
 /* ============================================================
    CONFIG — change the date here and the whole page follows:
@@ -913,17 +891,6 @@ if(PARTY.decided){
   el('dateField').hidden = true;
   el('countCap').textContent = 'counting to ' + PARTY.label + '. The poll has spoken.';
 }
-
-/* ============================================================
-   THE DOME — see dome.js
-   ============================================================ */
-var hintEl = el('hint');
-SadafDome(el('inlay'), {
-  word: 'SADAF',
-  static: RM,
-  onCount: function(n){ el('tileN').textContent = n.toLocaleString('en-GB'); },
-  onPointer: function(){ hintEl.classList.add('is-gone'); }
-});
 
 /* ============================================================
    COUNTDOWN — to the earlier of the two dates

@@ -3,7 +3,7 @@
 Invitation page for Sadaf's 30th — Rotterdam & Schiedam, 26 or 27 September 2026.
 Live at <https://ojallington.github.io/sadaf-30/>
 
-Single static page (`index.html` plus `dome.js`, the tile-vault hero shared with the preview card), no build step, no backend. Replies are composed in the page
+Single static page (`index.html` plus `sadaf-hero.js`, the animated hero designed in Claude Design and shared with the preview card), no build step, no backend. Replies are composed in the page
 and sent by the guest into the WhatsApp group — nothing is stored or transmitted here.
 
 ## Locking in the date once the poll lands

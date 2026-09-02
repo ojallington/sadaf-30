@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head><meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,700;1,400;1,700&family=Archivo+Black&family=Vazirmatn:wght@300..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Archivo+Black&family=Vazirmatn:wght@300..700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@700&text=%D8%B5%D8%AF%D9%81&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0}
@@ -10,9 +10,8 @@ body{width:1200px;height:630px;overflow:hidden;background:#2A0E44;font-family:"V
   radial-gradient(700px 620px at 96% 84%,rgba(192,53,95,.15),transparent 64%)}
 .frame{position:absolute;inset:26px;border:1.5px solid rgba(217,164,65,.42)}
 .frame::after{content:"";position:absolute;inset:9px;border:1px solid rgba(217,164,65,.2)}
-.taq{position:absolute;left:52px;top:44px;width:540px;height:542px;filter:drop-shadow(0 30px 40px rgba(0,0,0,.7))}
-#inlay{display:block;width:540px;height:542px;clip-path:url(#taqClip)}
-.arch{position:absolute;inset:0;width:100%;height:100%}
+.art{position:absolute;left:40px;top:40px;width:580px;height:550px;filter:drop-shadow(0 30px 40px rgba(0,0,0,.7))}
+.art sadaf-hero{height:550px}
 .in{position:absolute;left:640px;top:0;width:500px;height:630px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
 .nas{font-family:"Noto Nastaliq Urdu",serif;font-size:50px;color:#F2D79A;line-height:1.9;direction:rtl}
 .kick{font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:#F2D79A;font-weight:500;margin-bottom:16px}
@@ -46,13 +45,7 @@ h1 em{font-style:italic;background:linear-gradient(175deg,#FFF1C2,#F2D79A 30%,#D
 </defs></svg>
 <svg class="bg"><rect width="100%" height="100%" fill="url(#g)"/></svg>
 <div class="glow"></div><div class="frame"></div>
-<div class="taq">
-  <canvas id="inlay" width="540" height="542"></canvas>
-  <svg class="arch" viewBox="0 0 1 1" preserveAspectRatio="none"><g fill="none" stroke="#D9A441">
-    <path d="M0,1 L0,0.58 C0,0.30 0.38,0.12 0.5,0 C0.62,0.12 1,0.30 1,0.58 L1,1 Z" stroke-width="2.6" vector-effect="non-scaling-stroke"/>
-    <path d="M0,1 L0,0.58 C0,0.30 0.38,0.12 0.5,0 C0.62,0.12 1,0.30 1,0.58 L1,1 Z" transform="translate(0.5,1) scale(0.965) translate(-0.5,-1)" stroke-width="1" stroke-opacity=".55" vector-effect="non-scaling-stroke"/>
-  </g></svg>
-</div>
+<div class="art"><sadaf-hero transparent intro="false"></sadaf-hero></div>
 <div class="in">
   <p class="nas" dir="rtl" lang="fa">صدف</p>
   <p class="kick">Sadaf · seashell · a person</p>
@@ -67,6 +60,5 @@ h1 em{font-style:italic;background:linear-gradient(175deg,#FFF1C2,#F2D79A 30%,#D
   <p class="meta">A house to dress · a surprise at the zoo · thirty candles</p>
   <p class="meta">Dress code <b>purple &amp; gold</b>, <em>and I mean it.</em></p>
 </div>
-<script src="dome.js"></script>
-<script>SadafDome(document.getElementById('inlay'), {word:'SADAF', static:true});</script>
+<script src="sadaf-hero.js"></script>
 </body></html>
