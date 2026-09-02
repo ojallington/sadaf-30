@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Sadaf Turns Thirty</title>
-<meta name="description" content="One day in three parts in Rotterdam and Schiedam — 26 or 27 September 2026. Purple and gold. Bring someone.">
+<meta name="description" content="One day in three parts, on one of two dates, with exactly one secret. 26 or 27 September 2026, Rotterdam and Schiedam. Purple and gold, and I mean it.">
 
 <!-- link preview (WhatsApp, Signal, iMessage) -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Sadaf turns thirty">
-<meta property="og:description" content="26 or 27 September 2026 · Rotterdam &amp; Schiedam. Dressing the house, an afternoon at Blijdorp, a night of food and noise. Dress code: purple and gold.">
+<meta property="og:description" content="26 or 27 September 2026 — a poll will decide. A house to dress, an afternoon at Blijdorp, thirty candles on one cake. Dress code: purple and gold, and I mean it.">
 <meta property="og:url" content="https://ojallington.github.io/sadaf-30/">
 <meta property="og:image" content="https://ojallington.github.io/sadaf-30/og.png">
 <meta property="og:image:width" content="1200">
@@ -24,7 +24,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&text=%D8%B5%D8%AF%D9%81%DB%B0%DB%B1%DB%B2%DB%B3&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
-   TOKENS — Isfahan tilework: aubergine ground, gold, firouzeh.
+   TOKENS — Isfahan tilework, kept as the straight man.
+   Purple and gold is the dress code; the page wears it.
    Single-theme by intent: an invitation commits to one world.
    ============================================================ */
 :root{
@@ -33,7 +34,7 @@
   --zar:      #D9A441;   /* gold */
   --zar-2:    #F2D79A;   /* gold leaf highlight */
   --firouzeh: #2BB8AC;   /* turquoise glaze */
-  --anar:     #C0355F;   /* pomegranate */
+  --anar:     #C0355F;   /* pomegranate — also the stamp ink */
   --sedef:    #F7EFE0;   /* cream — panels, paper */
   --matn:     #33124F;   /* text on cream */
   --matn-2:   #6E4C89;   /* muted on cream */
@@ -43,6 +44,7 @@
   --display: "Amiri", Georgia, "Times New Roman", serif;
   --body:    "Vazirmatn", system-ui, -apple-system, "Segoe UI", sans-serif;
   --nastaliq:"Noto Nastaliq Urdu", "Amiri", serif;
+  --stamp:   "Archivo Black", Impact, "Arial Black", sans-serif;
 
   --gut: clamp(20px, 5vw, 56px);
   --maxw: 1060px;
@@ -75,12 +77,34 @@ button{font:inherit; color:inherit}
 .wrap{max-width:var(--maxw); margin:0 auto; padding-inline:var(--gut)}
 .oct{display:block; color:var(--zar)}
 
+/* ============================================================
+   THE STAMP — the one loud thing on the page.
+   Reads TO BE CONFIRMED until the poll lands, then CONFIRMED.
+   ============================================================ */
+.stamp{
+  display:inline-block; padding:.42em .7em .36em; line-height:1;
+  font-family:var(--stamp); font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--anar); border:2px solid currentColor; border-radius:3px;
+  box-shadow:inset 0 0 0 2px var(--sedef), inset 0 0 0 3px currentColor;
+  background:var(--sedef);
+  transform:rotate(-5deg); white-space:nowrap; vertical-align:middle;
+  -webkit-mask-image:radial-gradient(circle at 30% 40%, #000 0 55%, rgba(0,0,0,.72) 56% 100%);
+          mask-image:radial-gradient(circle at 30% 40%, #000 0 55%, rgba(0,0,0,.72) 56% 100%);
+}
+.stamp--big{
+  position:absolute; z-index:3; right:clamp(-6px,1vw,8px); top:-26px;
+  font-size:clamp(15px,3.4vw,24px); padding:.5em .8em .42em; letter-spacing:.14em;
+  transform:rotate(-9deg); border-width:3px;
+  box-shadow:inset 0 0 0 3px var(--sedef), inset 0 0 0 5px currentColor, 0 12px 28px -14px rgba(0,0,0,.8);
+}
+.is-decided .stamp{color:var(--sabz)}
+
 .kicker{
   display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
   gap:9px 16px; margin:0 0 clamp(18px,4vh,34px);
   font-size:11px; font-weight:500; letter-spacing:.26em; text-transform:uppercase; color:var(--zar-2);
 }
-.kicker p{margin:0}
+.kicker p{margin:0; display:inline-flex; align-items:center; gap:10px}
 .kicker .oct{width:8px; height:8px; opacity:.85}
 
 /* ============================================================
@@ -96,6 +120,11 @@ button{font:inherit; color:inherit}
   width:38px; height:38px;
   filter:drop-shadow(0 4px 10px rgba(0,0,0,.55));
 }
+.taq__cap{
+  margin:10px auto 0; font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+  color:rgba(201,178,224,.62); font-weight:500; max-width:40ch; line-height:1.6;
+}
+.taq__cap b{color:var(--zar-2); font-weight:600; font-variant-numeric:tabular-nums}
 
 .sadaf{
   font-family:var(--nastaliq); font-size:clamp(42px,8vw,66px);
@@ -115,6 +144,7 @@ button{font:inherit; color:inherit}
 }
 .hero__line em{font-style:italic; color:var(--zar)}
 .hero__sub{max-width:47ch; margin:18px auto 0; color:var(--roshan); font-size:16.5px; font-weight:300}
+.hero__sub b{color:var(--sedef); font-weight:600}
 
 .cta-row{display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-top:26px}
 .btn{
@@ -144,7 +174,7 @@ button{font:inherit; color:inherit}
 .count__u{text-align:center; min-width:56px}
 .count__n{font-family:var(--display); font-weight:400; font-size:clamp(30px,5.4vw,46px); line-height:1; color:var(--zar-2); font-variant-numeric:tabular-nums}
 .count__l{font-size:10px; letter-spacing:.24em; text-transform:uppercase; color:var(--roshan); margin-top:8px}
-.count__cap{font-size:10.5px; letter-spacing:.18em; text-transform:uppercase; color:rgba(201,178,224,.66); text-align:center; margin:12px 0 0}
+.count__cap{font-size:10.5px; letter-spacing:.18em; text-transform:uppercase; color:rgba(201,178,224,.66); text-align:center; margin:12px auto 0; max-width:44ch; line-height:1.7}
 
 /* ============================================================
    SECTION CREST
@@ -158,12 +188,13 @@ button{font:inherit; color:inherit}
 .crest .bead{display:block; width:13px; height:13px}
 .sec__title{font-family:var(--display); font-weight:700; font-size:clamp(32px,6vw,54px); line-height:1; margin:0; text-align:center; text-wrap:balance}
 .sec__note{color:var(--roshan); font-size:15px; margin:12px auto 0; max-width:52ch; text-align:center; font-weight:300}
+.sec__note b{color:var(--sedef); font-weight:600}
 .sec__head{margin-bottom:clamp(28px,5vh,44px)}
 
 /* ============================================================
-   THE DATE — two glazed options, undecided
+   THE DATE — two glazed options, stamped
    ============================================================ */
-.dates{display:grid; grid-template-columns:repeat(auto-fit,minmax(248px,1fr)); gap:16px; max-width:760px; margin:0 auto}
+.dates{position:relative; display:grid; grid-template-columns:repeat(auto-fit,minmax(248px,1fr)); gap:16px; max-width:760px; margin:0 auto}
 .dcard{
   position:relative; text-align:center; padding:26px 22px 24px;
   background:linear-gradient(178deg, rgba(62,22,99,.62), rgba(28,8,48,.72));
@@ -209,6 +240,8 @@ button{font:inherit; color:inherit}
 .act__where{font-size:12.5px; color:var(--matn-2); margin:0; font-weight:400}
 .act__hr{width:64px; height:1px; background:var(--accent); opacity:.45; margin:18px auto}
 .act__body{margin:0 auto; max-width:56ch; color:#4B2A66; font-weight:300; text-align:center}
+.act__body + .act__body{margin-top:12px}
+.act__body b{color:var(--matn); font-weight:600}
 .act__foot{display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:12px; margin-top:20px}
 
 .chip{
@@ -227,6 +260,35 @@ button{font:inherit; color:inherit}
   transition:transform .18s ease, filter .18s ease;
 }
 .link-out:hover{transform:translateY(-2px); filter:brightness(1.15)}
+
+/* the one secret, set into the prep card */
+.secret{
+  display:flex; gap:14px; align-items:flex-start; text-align:left;
+  max-width:56ch; margin:22px auto 0; padding:14px 16px;
+  background:rgba(42,14,68,.06); border:1px dashed rgba(122,32,80,.5); border-radius:2px;
+}
+.secret .bead{display:block; width:22px; height:22px; flex:none; margin-top:2px}
+.secret p{margin:0; font-size:14px; line-height:1.5; color:#4B2A66; font-weight:300}
+.secret b{color:#7A2050; font-weight:700; letter-spacing:.12em; text-transform:uppercase; font-size:11px; display:block; margin-bottom:3px}
+
+/* thirty candles, pictured for the fire brigade */
+.candles{display:flex; flex-wrap:wrap; justify-content:center; gap:14px 7px; max-width:420px; margin:28px auto 0; padding-top:6px}
+.candles i{
+  position:relative; display:block; width:4px; height:16px; border-radius:1px;
+  background:linear-gradient(180deg,#F2D79A,#C8952E);
+}
+.candles i::before{
+  content:""; position:absolute; left:50%; bottom:100%; width:8px; height:11px; margin-left:-4px;
+  border-radius:50% 50% 50% 50% / 62% 62% 38% 38%;
+  background:radial-gradient(circle at 50% 72%, #FFF6C4 0 18%, #F2B03A 50%, rgba(192,53,95,0) 78%);
+  transform-origin:50% 100%;
+  animation:flick 1.15s ease-in-out infinite alternate;
+}
+@keyframes flick{
+  from{transform:scale(1) rotate(-7deg)}
+  to{transform:scale(.8,1.18) rotate(8deg)}
+}
+.candles__l{margin:12px 0 0; font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--matn-2); font-weight:600}
 
 /* the hop — the journey between the zoo and the house, which is real information */
 .hop{text-align:center; max-width:54ch; margin:0 auto; padding:2px 12px}
@@ -252,11 +314,13 @@ button{font:inherit; color:inherit}
 .dress__k{font-size:11px; font-weight:500; letter-spacing:.3em; text-transform:uppercase; color:var(--zar-2); margin:0}
 .dress__v{
   font-family:var(--display); font-style:italic; font-weight:700;
-  font-size:clamp(40px,9.4vw,92px); line-height:1.06; margin:14px 0 16px;
+  font-size:clamp(40px,9.4vw,92px); line-height:1.06; margin:14px 0 0;
   background:linear-gradient(94deg,var(--zar-2),var(--anar) 32%,#A96BE0 60%,var(--firouzeh));
   -webkit-background-clip:text; background-clip:text; color:transparent;
 }
-.dress__p{color:var(--roshan); max-width:48ch; margin:0 auto; font-size:16px; font-weight:300}
+.dress__m{font-family:var(--display); font-style:italic; font-size:clamp(22px,4vw,34px); color:var(--zar-2); margin:2px 0 18px; line-height:1.2}
+.dress__p{color:var(--roshan); max-width:50ch; margin:0 auto; font-size:16px; font-weight:300}
+.dress__p b{color:var(--sedef); font-weight:600}
 
 /* ============================================================
    REPLY — composes a message for the group
@@ -266,14 +330,16 @@ button{font:inherit; color:inherit}
 .places{text-align:center; padding-bottom:24px; border-bottom:1px solid rgba(217,164,65,.5)}
 .places__n{font-family:var(--display); font-size:clamp(30px,5vw,42px); font-weight:700; line-height:1; margin:0}
 .places__l{font-size:11px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--matn-2); margin:8px 0 0}
-.pips{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:18px}
+.pips{display:flex; flex-wrap:wrap; gap:6px; justify-content:center; margin:18px auto 0; max-width:320px}
 .pip{
-  width:16px; height:16px; border-radius:50%;
+  width:15px; height:15px; border-radius:50%;
   box-shadow:0 0 0 1px rgba(217,164,65,.55);
   background:radial-gradient(circle, #0B1226 0 19%, #2BB8AC 19% 44%, #F5EDE0 44% 72%, #12306E 72% 100%);
 }
+.pips__l{font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:rgba(110,76,137,.7); margin:10px 0 0; font-weight:500}
 
 .field{margin-top:24px}
+.field[hidden]{display:none}
 .field__label{display:block; font-size:11px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--matn-2); margin-bottom:10px}
 .input{
   width:100%; padding:14px 16px; border-radius:2px;
@@ -303,6 +369,7 @@ textarea.input{resize:vertical; min-height:78px}
 .trio .opt{flex-direction:column; align-items:center; text-align:center; gap:8px; padding:14px 8px}
 .trio .opt input{margin:0}
 .trio .opt__t{font-size:14px}
+.trio .opt__d{font-size:12px; margin-top:0}
 #plusName{margin-top:10px}
 #plusName[hidden]{display:none}
 
@@ -347,18 +414,21 @@ textarea.input{resize:vertical; min-height:78px}
 .foot__medal .oct{position:absolute; inset:0; width:100%; height:100%}
 .foot__medal span{font-family:var(--nastaliq); font-size:26px; color:var(--zar-2); position:relative; line-height:1.6}
 .foot__addr{font-family:var(--display); font-size:clamp(23px,4vw,34px); font-style:italic; margin:0 0 6px}
-.foot__meta{color:var(--roshan); font-size:14px; margin:0 0 24px; letter-spacing:.06em; font-weight:300}
+.foot__meta{color:var(--roshan); font-size:14px; margin:0 0 24px; letter-spacing:.06em; font-weight:300; display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:8px 10px}
 .foot__fine{color:rgba(201,178,224,.6); font-size:12.5px; margin:30px auto 0; max-width:48ch; line-height:1.6; font-weight:300}
 
 #burst{position:fixed; inset:0; pointer-events:none; z-index:60}
 
 @media (max-width:600px){
   .frame{inset:6px}
-  .kicker{flex-direction:column; gap:6px}
+  .kicker{flex-direction:column; gap:8px}
   .kicker .oct{display:none}
   .crest i{width:36px}
   .trio{grid-template-columns:1fr}
   .trio .opt{flex-direction:row; text-align:left}
+  .trio .opt__d{margin-top:3px}
+  .stamp--big{top:-18px; right:6px}
+  .candles{gap:14px 6px; max-width:300px}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -407,7 +477,7 @@ textarea.input{resize:vertical; min-height:78px}
   <!-- ══════════ HERO ══════════ -->
   <header class="hero wrap">
     <div class="kicker">
-      <p id="dateLine">26 or 27 September 2026</p>
+      <p><span id="dateLine">26 or 27 September 2026</span> <span class="stamp" data-stamp>to be confirmed</span></p>
       <svg class="oct" viewBox="-1.1 -1.1 2.2 2.2"><use href="#oct" fill="currentColor"/></svg>
       <p>Rotterdam &amp; Schiedam</p>
       <svg class="oct" viewBox="-1.1 -1.1 2.2 2.2"><use href="#oct" fill="currentColor"/></svg>
@@ -415,7 +485,7 @@ textarea.input{resize:vertical; min-height:78px}
     </div>
 
     <div class="taq">
-      <canvas id="inlay" aria-label="The name Sadaf laid out in glazed tilework"></canvas>
+      <canvas id="inlay" aria-label="The name Sadaf laid out in glazed tilework, watched by a number of nazar beads"></canvas>
       <svg class="taq__frame" viewBox="0 0 1 1" preserveAspectRatio="none" aria-hidden="true">
         <g fill="none" stroke="#D9A441">
           <path d="M0,1 L0,0.58 C0,0.30 0.38,0.12 0.5,0 C0.62,0.12 1,0.30 1,0.58 L1,1 Z" stroke-width="2.4" vector-effect="non-scaling-stroke"/>
@@ -427,15 +497,16 @@ textarea.input{resize:vertical; min-height:78px}
         <use href="#nazar"/>
       </svg>
     </div>
+    <p class="taq__cap"><b id="tileN">—</b> tiles, each laid by hand, if a for-loop counts as a hand. The beads are quality assurance.</p>
 
     <p class="sadaf" dir="rtl" lang="fa">صدف</p>
     <p class="gloss">
-      <span>sadaf · mother-of-pearl</span>
-      <span class="gloss__h" id="hint">drag across the tiles</span>
+      <span>sadaf · mother-of-pearl · a person</span>
+      <span class="gloss__h" id="hint">drag across the tiles — they blink, but they don't mind</span>
     </p>
 
     <h1 class="hero__line">turns <em>thirty</em></h1>
-    <p class="hero__sub">One day in three parts: dressing the house, an afternoon among the animals, and a night of food and noise. Bring someone if you like — the date is being settled this week.</p>
+    <p class="hero__sub">One day in three parts, on one of two dates, with exactly one secret. <b>The address is at the bottom of this page</b> and also in the middle, in case you're reading this on a tram.</p>
 
     <div class="cta-row">
       <a class="btn btn--gold" href="#reply">Reply</a>
@@ -443,7 +514,7 @@ textarea.input{resize:vertical; min-height:78px}
     </div>
 
     <div class="count" id="count" aria-label="Countdown"></div>
-    <p class="count__cap">counting to the earlier of the two dates</p>
+    <p class="count__cap" id="countCap">counting to Saturday the 26th, which may yet turn out to be Sunday. The clock is doing its best.</p>
   </header>
 
   <!-- ══════════ THE DATE ══════════ -->
@@ -454,28 +525,29 @@ textarea.input{resize:vertical; min-height:78px}
         <i></i><svg class="oct" viewBox="-1.1 -1.1 2.2 2.2"><use href="#oct" fill="currentColor"/></svg><i></i>
         <svg class="bead" viewBox="-1.1 -1.1 2.2 2.2"><use href="#nazar"/></svg>
       </div>
-      <h2 class="sec__title">Two dates, one to choose</h2>
-      <p class="sec__note">The poll is in the WhatsApp group. Whichever wins, the shape of the day below stays the same.</p>
+      <h2 class="sec__title">One of two dates</h2>
+      <p class="sec__note">A poll in the WhatsApp group decides between them. Until it does, this page refuses to commit, <b>and so should your zoo ticket.</b></p>
     </div>
 
     <div class="dates">
+      <span class="stamp stamp--big" data-stamp aria-hidden="true">to be confirmed</span>
       <article class="dcard">
         <p class="dcard__day">Saturday</p>
         <p class="dcard__n">26</p>
         <p class="dcard__m">September</p>
-        <p class="dcard__p">A proper Saturday night — nobody has anywhere to be in the morning.</p>
+        <p class="dcard__p">The full Saturday night. Nobody has to be anywhere on Sunday, which is how these things get out of hand.</p>
         <svg class="dcard__bead" viewBox="-1.1 -1.1 2.2 2.2" aria-hidden="true"><use href="#nazar"/></svg>
       </article>
       <article class="dcard">
         <p class="dcard__day">Sunday</p>
         <p class="dcard__n">27</p>
         <p class="dcard__m">September</p>
-        <p class="dcard__p">Quieter city, quieter zoo, and an earlier finish for anyone working Monday.</p>
+        <p class="dcard__p">Quieter zoo, quieter city, and an ending that acknowledges Monday exists.</p>
         <svg class="dcard__bead" viewBox="-1.1 -1.1 2.2 2.2" aria-hidden="true"><use href="#nazar"/></svg>
       </article>
     </div>
 
-    <p class="dates__note">Vote in the group, or say which suits you in your reply below — <b>either</b> is a perfectly good answer.</p>
+    <p class="dates__note">Vote in the group, or say which suits you in your reply below. <b>Either</b> is a legitimate answer and, historically, the popular one.</p>
   </section>
 
   <!-- ══════════ THE DAY ══════════ -->
@@ -486,8 +558,8 @@ textarea.input{resize:vertical; min-height:78px}
         <i></i><svg class="oct" viewBox="-1.1 -1.1 2.2 2.2"><use href="#oct" fill="currentColor"/></svg><i></i>
         <svg class="bead" viewBox="-1.1 -1.1 2.2 2.2"><use href="#nazar"/></svg>
       </div>
-      <h2 class="sec__title">The day</h2>
-      <p class="sec__note">Come to all three, or just the part you fancy — tell us which in your reply.</p>
+      <h2 class="sec__title">The day, in order</h2>
+      <p class="sec__note">Come to all three or just the one you fancy, but say which in your reply. <b>I'm the caterer, and I count chairs.</b></p>
     </div>
 
     <div class="acts">
@@ -498,11 +570,16 @@ textarea.input{resize:vertical; min-height:78px}
         <h3 class="act__name">Dress the house</h3>
         <p class="act__where">Noordvestsingel 81, Schiedam · by application</p>
         <div class="act__hr"></div>
-        <p class="act__body">A small crew turning the house purple and gold before she sees it. Lanterns, hanging things, far too much of everything. This one isn't first-come — put your hand up in your reply and Oscar picks the crew, because it only works with about four pairs of hands and a bit of ladder confidence.</p>
+        <p class="act__body">Roughly four people turn the house purple and gold before she sees it. This is <b>not first-come, first-served</b>; it is a selection process. Put your hand up in your reply and Oscar picks the crew on availability, ladder confidence, and whether you can be trusted with a staple gun near soft furnishings.</p>
+        <p class="act__body">Unsuccessful applicants are still fed later.</p>
         <div class="act__foot">
           <span class="chip chip--live">Roughly four pairs of hands</span>
-          <span class="chip">Register interest, not a place</span>
+          <span class="chip">An application, not a place</span>
         </div>
+        <aside class="secret">
+          <svg class="bead" viewBox="-1.1 -1.1 2.2 2.2" aria-hidden="true"><use href="#nazar"/></svg>
+          <p><b>The one secret</b>Sadaf knows about the zoo and the party. She does not know about this. It is the only thing on this page she hasn't seen, so please don't be the one.</p>
+        </aside>
       </article>
 
       <article class="act act--zoo panel">
@@ -511,16 +588,18 @@ textarea.input{resize:vertical; min-height:78px}
         <h3 class="act__name">Diergaarde Blijdorp</h3>
         <p class="act__where">Blijdorplaan 8, Rotterdam · 10 min walk from Rotterdam Centraal</p>
         <div class="act__hr"></div>
-        <p class="act__body">Sadaf's pick. Gorillas, the shark tunnel, penguins behaving badly. Everyone buys their own day ticket — but wait until the date is settled before you book. Already have a Blijdorp pass? Say so and skip this bit. We walk to the house together afterwards.</p>
+        <p class="act__body">Sadaf's pick, and a good one. Gorillas, the shark tunnel, and the penguins, who will be better dressed than you whatever you do. Everyone buys their own day ticket, <b>but not yet</b>: book before the poll lands and you may own a ticket to an afternoon at the zoo by yourself.</p>
+        <p class="act__body">Got a Blijdorp pass? Say so in your reply and skip this bit.</p>
         <div class="act__foot">
           <span class="price">€27,50<small>per person</small></span>
           <a class="link-out" href="https://diergaardeblijdorp.nl/nl/dagtickets-kopen" target="_blank" rel="noopener noreferrer">Tickets ↗</a>
+          <span class="chip chip--live">Later, though</span>
         </div>
       </article>
 
       <div class="hop">
         <p class="hop__t">18:00 → 19:30 · the hop</p>
-        <p class="hop__p">Blijdorp to Schiedam is about twenty-five minutes door to door. <b>Come straight on with us from the zoo</b> — there's room at the house to change, so wear something you can walk a zoo in and bring the purple and gold in a bag. Not coming to Blijdorp? Just turn up at 19:30.</p>
+        <p class="hop__p">Blijdorp to Schiedam is about twenty-five minutes door to door. <b>Come straight on from the zoo</b> — you'll land at the house around 18:45 and can change there — or arrive at 19:30 already in purple and gold. Either way, wear something you can walk a zoo in and bring the good outfit in a bag. Nobody has ever regretted the bag.</p>
       </div>
 
       <article class="act act--party panel">
@@ -529,12 +608,14 @@ textarea.input{resize:vertical; min-height:78px}
         <h3 class="act__name">The party</h3>
         <p class="act__where">Noordvestsingel 81, 3119 DC Schiedam</p>
         <div class="act__hr"></div>
-        <p class="act__body">Food, drinks, music and thirty candles. Two ways in: drift back with the zoo crowd from about 18:45 and change here, or arrive at 19:30 dressed and ready. There's a nazar over the door, so nothing can go wrong. Bring yourself; if you want to bring something, make it a bottle.</p>
+        <p class="act__body">Food, drinks, music, and thirty candles on one cake, which under most fire codes is an event rather than a dessert. There's a nazar over the door; it handles quality assurance and has never lost a guest. <b>Bring yourself.</b> If you want to bring something, a bottle is correct.</p>
         <div class="act__foot">
           <a class="link-out" href="https://www.google.com/maps/search/?api=1&amp;query=Noordvestsingel+81%2C+3119+DC+Schiedam" target="_blank" rel="noopener noreferrer">Open in Maps ↗</a>
           <span class="chip">Somewhere to change</span>
-          <span class="chip">Sofa available for the brave</span>
+          <span class="chip">A sofa, for the brave</span>
         </div>
+        <div class="candles" id="candles" aria-hidden="true"></div>
+        <p class="candles__l">Thirty candles, pictured for the fire brigade</p>
       </article>
 
     </div>
@@ -544,7 +625,8 @@ textarea.input{resize:vertical; min-height:78px}
   <section class="dress">
     <p class="dress__k">Dress code</p>
     <p class="dress__v">purple &amp; gold</p>
-    <p class="dress__p">Every shade of it — orchid, aubergine, lilac, plum. Brass, saffron, turquoise and mirror-work all count. If it would look at home in a tiled courtyard in Isfahan, wear it.</p>
+    <p class="dress__m">and I mean it.</p>
+    <p class="dress__p">Orchid, aubergine, lilac, plum, mauve: the whole purple family. Gold, brass, saffron, mirror-work. <b>Black is not a shade of purple.</b> A purple scarf over a black outfit is an attempt, and attempts will be noted by the nazar.</p>
   </section>
 
   <!-- ══════════ REPLY ══════════ -->
@@ -556,14 +638,15 @@ textarea.input{resize:vertical; min-height:78px}
         <svg class="bead" viewBox="-1.1 -1.1 2.2 2.2"><use href="#nazar"/></svg>
       </div>
       <h2 class="sec__title">Reply</h2>
-      <p class="sec__note">Tick what you're coming to and this writes your message. Send it into the group — the group is the guest list, and it's the head count we're cooking for.</p>
+      <p class="sec__note">Tick what you're coming to and this writes your message. You send it into the WhatsApp group yourself. <b>The group is the guest list.</b> This page has no memory and no opinions.</p>
     </div>
 
     <div class="rsvp panel">
       <div class="places">
         <p class="places__n">Bring someone</p>
-        <p class="places__l">plus ones welcome — just say who</p>
+        <p class="places__l">plus ones welcome — say who, so a chair exists</p>
         <div class="pips" id="pips" aria-hidden="true"></div>
+        <p class="pips__l">thirty beads, one per year, all watching</p>
       </div>
 
       <div class="field">
@@ -571,12 +654,12 @@ textarea.input{resize:vertical; min-height:78px}
         <input class="input" id="name" type="text" autocomplete="name" placeholder="So we know whose message this is">
       </div>
 
-      <div class="field">
+      <div class="field" id="dateField">
         <span class="field__label">Which date suits you?</span>
         <div class="opts trio">
-          <label class="opt" data-d="Sat 26"><input type="radio" name="dt" value="Sat 26"><span><span class="opt__t">Sat 26</span></span></label>
-          <label class="opt" data-d="Sun 27"><input type="radio" name="dt" value="Sun 27"><span><span class="opt__t">Sun 27</span></span></label>
-          <label class="opt" data-d="Either"><input type="radio" name="dt" value="Either" checked><span><span class="opt__t">Either</span></span></label>
+          <label class="opt" data-d="Sat 26"><input type="radio" name="dt" value="Sat 26"><span><span class="opt__t">Sat 26</span><span class="opt__d">the long night</span></span></label>
+          <label class="opt" data-d="Sun 27"><input type="radio" name="dt" value="Sun 27"><span><span class="opt__t">Sun 27</span><span class="opt__d">the sensible one</span></span></label>
+          <label class="opt" data-d="Either"><input type="radio" name="dt" value="Either" checked><span><span class="opt__t">Either</span><span class="opt__d">the honest one</span></span></label>
         </div>
       </div>
 
@@ -587,7 +670,7 @@ textarea.input{resize:vertical; min-height:78px}
             <input type="checkbox" id="cPrep">
             <span>
               <span class="opt__t">Dress the house</span>
-              <span class="opt__d">12:00–14:00 · putting your hand up, not booking a place</span>
+              <span class="opt__d">12:00–14:00 · you're applying, not booking. Oscar picks.</span>
             </span>
             <span class="opt__x">Apply</span>
           </label>
@@ -596,7 +679,7 @@ textarea.input{resize:vertical; min-height:78px}
             <input type="checkbox" id="cZoo">
             <span>
               <span class="opt__t">Blijdorp</span>
-              <span class="opt__d">15:00–18:00 · €27,50 · you book your own ticket, and we walk to the house after</span>
+              <span class="opt__d">15:00–18:00 · €27,50 · your own ticket, bought later, not now</span>
             </span>
           </label>
 
@@ -604,7 +687,7 @@ textarea.input{resize:vertical; min-height:78px}
             <input type="checkbox" id="cParty">
             <span>
               <span class="opt__t">The party</span>
-              <span class="opt__d">19:30 till late · Noordvestsingel 81 · earlier if you're coming from the zoo</span>
+              <span class="opt__d">19:30 till late · Noordvestsingel 81 · from 18:45 if you're coming from the zoo</span>
             </span>
           </label>
         </div>
@@ -612,8 +695,8 @@ textarea.input{resize:vertical; min-height:78px}
         <div class="tickets" id="tickets" hidden>
           <p class="tickets__h">Your zoo ticket</p>
           <div class="opts">
-            <label class="opt"><input type="radio" name="tk" value="I'll book once the date is set"><span><span class="opt__t">I'll book once the date is set</span></span></label>
-            <label class="opt"><input type="radio" name="tk" value="I have a Blijdorp pass"><span><span class="opt__t">I have a Blijdorp pass</span></span></label>
+            <label class="opt"><input type="radio" name="tk" value="I'll book once the date is set"><span><span class="opt__t">I'll book once the date is set</span><span class="opt__d">Correct.</span></span></label>
+            <label class="opt"><input type="radio" name="tk" value="I have a Blijdorp pass"><span><span class="opt__t">I have a Blijdorp pass</span><span class="opt__d">Show-off.</span></span></label>
           </div>
         </div>
       </div>
@@ -625,7 +708,7 @@ textarea.input{resize:vertical; min-height:78px}
             <input type="checkbox" id="cPlus">
             <span>
               <span class="opt__t">Yes, a plus one</span>
-              <span class="opt__d">Anyone not already in the group is welcome — tell us who so we lay a place</span>
+              <span class="opt__d">Anyone not already in the group is welcome. Tell us who, so a chair exists.</span>
             </span>
           </label>
         </div>
@@ -634,7 +717,7 @@ textarea.input{resize:vertical; min-height:78px}
 
       <div class="field">
         <label class="field__label" for="note">Anything we should know? <span style="text-transform:none;letter-spacing:0">(optional)</span></label>
-        <textarea class="input" id="note" placeholder="Allergies, arriving late, leaving early, can&#39;t do stairs…"></textarea>
+        <textarea class="input" id="note" placeholder="Allergies, arriving late, leaving early, can&#39;t do stairs, ladder certifications…"></textarea>
       </div>
 
       <p class="msg" id="msg" role="status"></p>
@@ -644,7 +727,7 @@ textarea.input{resize:vertical; min-height:78px}
           <p class="draft__t">Your message</p>
           <p class="draft__t" id="stamp"></p>
         </div>
-        <p class="draft__box" id="draft"><em>Fill in your name and tick a part of the day — your message appears here.</em></p>
+        <p class="draft__box" id="draft"><em>Fill in your name and tick a part of the day — your message appears here, already written.</em></p>
         <div class="send-row">
           <button class="btn btn--wa" id="send">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.22 8.22 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.41a8.19 8.19 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.84-.2-.49-.4-.42-.56-.43h-.47c-.16 0-.43.06-.65.31-.22.25-.85.83-.85 2.03s.87 2.35.99 2.51c.12.17 1.72 2.62 4.16 3.67.58.25 1.03.4 1.39.51.58.19 1.11.16 1.53.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
@@ -652,7 +735,7 @@ textarea.input{resize:vertical; min-height:78px}
           </button>
           <button class="btn btn--outline" id="copy">Copy the message</button>
         </div>
-        <p class="hint">Opens WhatsApp with the message ready — pick the group and hit send. Nothing is stored on this page.</p>
+        <p class="hint">Opens WhatsApp with the message already written. Pick the group, press send, feel efficient. Nothing is stored on this page.</p>
       </div>
 
       <div class="send-row" style="margin-top:18px">
@@ -662,9 +745,9 @@ textarea.input{resize:vertical; min-height:78px}
 
     <div class="how">
       <div class="how__r"><span class="how__n">۱</span><p class="how__t"><b>Vote on the date</b> in the group poll — Saturday the 26th or Sunday the 27th.</p></div>
-      <div class="how__r"><span class="how__n">۲</span><p class="how__t"><b>Send your reply</b> into the group, so we know how many to cook for and how many chairs to find.</p></div>
-      <div class="how__r"><span class="how__n">۳</span><p class="how__t"><b>Wait to book Blijdorp</b> until the date is confirmed — then buy your own day ticket.</p></div>
-      <div class="how__r"><span class="how__n">۴</span><p class="how__t"><b>Not a word to Sadaf</b> about the house at midday. The rest she knows about.</p></div>
+      <div class="how__r"><span class="how__n">۲</span><p class="how__t"><b>Send your reply</b> into the group, so we know how many to cook for and how many chairs to borrow.</p></div>
+      <div class="how__r"><span class="how__n">۳</span><p class="how__t"><b>Don't book Blijdorp</b> until the date is confirmed. The zoo will still be there.</p></div>
+      <div class="how__r"><span class="how__n">۴</span><p class="how__t"><b>Not a word to Sadaf</b> about the house at midday. She knows the rest. It's one secret; please don't be the one.</p></div>
     </div>
   </section>
 
@@ -678,12 +761,12 @@ textarea.input{resize:vertical; min-height:78px}
       <span dir="rtl" lang="fa">۳۰</span>
     </div>
     <p class="foot__addr">Noordvestsingel 81</p>
-    <p class="foot__meta">3119 DC Schiedam · <span id="footDate">26 or 27 September 2026</span></p>
+    <p class="foot__meta"><span>3119 DC Schiedam · <span id="footDate">26 or 27 September 2026</span></span> <span class="stamp" data-stamp>to be confirmed</span></p>
     <div class="cta-row">
       <a class="btn btn--outline" href="https://www.google.com/maps/search/?api=1&amp;query=Noordvestsingel+81%2C+3119+DC+Schiedam" target="_blank" rel="noopener noreferrer">Directions ↗</a>
       <a class="btn btn--outline" href="#reply">Reply</a>
     </div>
-    <p class="foot__fine">This page keeps nothing and sends nothing — your reply is a message you send yourself, in the group.</p>
+    <p class="foot__fine">This page keeps nothing and sends nothing. It doesn't know you're here, and it would like to keep it that way.</p>
   </footer>
 
 </div>
@@ -691,7 +774,10 @@ textarea.input{resize:vertical; min-height:78px}
 
 <script>
 /* ============================================================
-   CONFIG — change the date here and the whole page follows
+   CONFIG — change the date here and the whole page follows:
+   the kicker, the footer, the countdown, the calendar file,
+   every stamp, and the date section and date radios (hidden
+   once decided).
    ============================================================ */
 var PARTY = {
   decided:  false,                              // <- flip to true once the poll lands
@@ -699,7 +785,6 @@ var PARTY = {
   label:    'Saturday 26 September 2026',       // <- how it reads once decided
   pending:  '26 or 27 September 2026',          // <- how it reads while undecided
   name:     'Sadaf',
-  capacity: 20,
   address:  'Noordvestsingel 81, 3119 DC Schiedam',
   site:     'https://ojallington.github.io/sadaf-30/',
   times: { prep:['12:00','14:00'], zoo:['15:00','18:00'], party:['19:30','23:59'] }
@@ -710,9 +795,17 @@ var el = function(id){ return document.getElementById(id); };
 var dateText = PARTY.decided ? PARTY.label : PARTY.pending;
 el('dateLine').textContent = dateText;
 el('footDate').textContent = dateText;
+if(PARTY.decided){
+  document.documentElement.classList.add('is-decided');
+  document.querySelectorAll('[data-stamp]').forEach(function(s){ s.textContent = 'confirmed'; });
+  el('date').hidden = true;
+  el('dateField').hidden = true;
+  el('countCap').textContent = 'counting to ' + PARTY.label + '. The poll has spoken.';
+}
 
 /* ============================================================
-   THE TILE FIELD — khatam stars and crosses, glazed
+   THE TILE FIELD — khatam stars and crosses, glazed,
+   supervised by nazar beads that blink
    ============================================================ */
 (function tiles(){
   var cv = el('inlay');
@@ -800,6 +893,9 @@ el('footDate').textContent = dateText;
         S.push({x:x, y:y, col:col, row:j, star:star, inWord:inWord, g:g, ph:x*0.03+y*0.05, lit:0, boost:0});
       }
     }
+    /* the honest count, for the caption */
+    el('tileN').textContent = S.length.toLocaleString('en-GB');
+
     /* a handful of nazar beads set into the wall, never over the name.
        one per coarse cell, jittered inside it, so they scatter without striping */
     var hash = function(a,b){ var v = Math.sin(a*127.1 + b*311.7)*43758.5453; return v - Math.floor(v); };
@@ -826,6 +922,8 @@ el('footDate').textContent = dateText;
         if(t.y < H*0.17 && Math.abs(t.x - W/2) < W*0.12) continue;
         var far = EYES.every(function(e){ return Math.hypot(e.x-t.x, e.y-t.y) >= R*4.2; });
         if(!far) continue;
+        /* each bead blinks on its own schedule; a few seconds apart, never in unison */
+        t.blinkAt = 2 + hash(t.x, t.y)*6;
         EYES.push(t);
       }
     }
@@ -907,6 +1005,20 @@ el('footDate').textContent = dateText;
       ctx.beginPath(); ctx.arc(e.x,e.y,er*0.72,0,6.2832); ctx.fillStyle='#F5EDE0'; ctx.fill();
       ctx.beginPath(); ctx.arc(e.x,e.y,er*0.44,0,6.2832); ctx.fillStyle='#2BB8AC'; ctx.fill();
       ctx.beginPath(); ctx.arc(e.x+px2,e.y+py2,er*0.19,0,6.2832); ctx.fillStyle='#0B1226'; ctx.fill();
+
+      /* the blink: a lid the colour of the ring closes and opens over ~0.18s */
+      if(!RM){
+        var since = t - e.blinkAt;
+        if(since > 0.18){
+          /* a bead blinks whenever it's being poked, otherwise every 4–9 seconds */
+          e.blinkAt = t + (ptr.live && Math.hypot(ptr.x-e.x, ptr.y-e.y) < 60 ? 0.6 : 4 + ((e.x*7 + e.y*3 + q*11) % 50)/10);
+        }else if(since >= 0){
+          var k = Math.sin(since/0.18*Math.PI);
+          ctx.beginPath();
+          ctx.ellipse(e.x, e.y, er*1.03, er*1.03*k, 0, 0, 6.2832);
+          ctx.fillStyle = '#12306E'; ctx.fill();
+        }
+      }
     }
 
     if(!RM) raf = requestAnimationFrame(paint);
@@ -960,13 +1072,17 @@ el('footDate').textContent = dateText;
   tick();
 })();
 
-/* a strand of nazar beads under the heading */
-(function places(){
-  var pips = el('pips');
-  for(var i=0;i<PARTY.capacity;i++){
+/* thirty nazar beads under the heading, one per year, and thirty candles on the party card */
+(function thirty(){
+  var pips = el('pips'), candles = el('candles');
+  for(var i=0;i<30;i++){
     var d = document.createElement('span');
     d.className = 'pip';
     pips.appendChild(d);
+    var c = document.createElement('i');
+    c.style.animationDelay = (-(i*0.37) % 1.15).toFixed(2) + 's';
+    c.style.animationDuration = (0.9 + ((i*7) % 5)*0.09).toFixed(2) + 's';
+    candles.appendChild(c);
   }
 })();
 
@@ -974,7 +1090,7 @@ el('footDate').textContent = dateText;
    THE MESSAGE — ticks in, WhatsApp out
    ============================================================ */
 var ACTS = {
-  prep:  {id:'cPrep',  line:'12:00 Dress the house (putting my hand up)'},
+  prep:  {id:'cPrep',  line:'12:00 Dress the house (applying, not booking)'},
   zoo:   {id:'cZoo',   line:'15:00 Blijdorp'},
   party: {id:'cParty', line:'19:30 The party'}
 };
@@ -991,7 +1107,7 @@ function compose(){
 
   var lines = [];
   lines.push(name + ' — in for Sadaf’s 30th ✨');
-  lines.push('Date: ' + (pick('dt') || 'Either') + ' works for me');
+  if(!PARTY.decided) lines.push('Date: ' + (pick('dt') || 'Either') + ' works for me');
   lines.push('Coming to:');
   chosen.forEach(function(k){ lines.push('  • ' + ACTS[k].line); });
 
@@ -1030,7 +1146,7 @@ function refresh(){
     el('copy').disabled = false;
     el('stamp').textContent = text.length + ' characters';
   }else{
-    box.innerHTML = '<em>Fill in your name and tick a part of the day — your message appears here.</em>';
+    box.innerHTML = '<em>Fill in your name and tick a part of the day — your message appears here, already written.</em>';
     el('send').disabled = true;
     el('copy').disabled = true;
     el('stamp').textContent = '';
@@ -1056,8 +1172,8 @@ el('copy').addEventListener('click', function(){
   var text = refresh();
   if(!text){ el('msg').textContent = 'Add your name and tick at least one part of the day.'; return; }
   var done = function(){
-    el('copy').textContent = 'Copied';
-    setTimeout(function(){ el('copy').textContent = 'Copy the message'; }, 2200);
+    el('copy').textContent = 'Copied — now paste it in the group';
+    setTimeout(function(){ el('copy').textContent = 'Copy the message'; }, 2600);
   };
   if(navigator.clipboard && navigator.clipboard.writeText){
     navigator.clipboard.writeText(text).then(done, function(){ el('msg').textContent = 'Copying is blocked here — select the message above instead.'; });
@@ -1086,7 +1202,7 @@ el('ics').addEventListener('click', function(){
       'DTEND:'+d+'T'+e[1][1].replace(':','')+'00',
       'SUMMARY:'+e[0],
       'LOCATION:'+e[2],
-      'DESCRIPTION:Dress code: purple and gold. ' + PARTY.site,
+      'DESCRIPTION:Dress code: purple and gold, and I mean it. ' + PARTY.site,
       'END:VEVENT');
   });
   lines.push('END:VCALENDAR');

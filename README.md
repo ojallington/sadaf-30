@@ -14,8 +14,10 @@ In `index.html`, the `PARTY` config block near the top of the `<script>`:
     isoDate: '2026-09-27',               // if Sunday wins
     label:   'Sunday 27 September 2026',
 
-The kicker, the footer, the countdown and the calendar file all follow from it.
-Then trim the "Two dates, one to choose" section and the date radios in the reply form.
+Everything follows from it: the kicker, the footer, the countdown and its caption,
+the calendar file, every "TO BE CONFIRMED" stamp (they turn green and read
+"CONFIRMED"), and the "One of two dates" section and the date radios in the reply
+form, which are hidden automatically. The composed message drops its date line too.
 
 ## Regenerating the link-preview card
 
