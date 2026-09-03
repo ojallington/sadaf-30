@@ -349,6 +349,13 @@ textarea.input{resize:vertical; min-height:78px}
 .opt:hover{background:#FFF6E8}
 .opt.is-on{border-color:#3E1663; background:rgba(62,22,99,.075)}
 .opt--no{margin-top:6px; border-style:dashed}
+.diff{display:flex; gap:10px; align-items:flex-start; cursor:pointer; margin:-2px 0 12px; font-size:13.5px; color:var(--matn-2); line-height:1.4}
+.diff[hidden]{display:none}
+.diff input{accent-color:#3E1663; width:17px; height:17px; margin:1px 0 0; flex:none}
+.dayhead{font-size:11px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:#3E1663; margin:0 0 8px}
+.dayhead[hidden]{display:none}
+#sunHead{margin-top:16px}
+#partsSun[hidden]{display:none}
 .opt--no.is-on{border-color:#8A2E5E; background:rgba(138,46,94,.08)}
 .opt input{accent-color:#3E1663; width:18px; height:18px; margin:3px 0 0; flex:none}
 .opt > span:not(.opt__x){flex:1 1 auto; min-width:0}
@@ -742,6 +749,11 @@ textarea.input{resize:vertical; min-height:78px}
 
       <div class="field">
         <span class="field__label" id="partsLabel">Which parts are you coming to?</span>
+        <label class="diff" id="diffRow" hidden>
+          <input type="checkbox" id="cDiff">
+          <span>My days differ — let me tick Saturday and Sunday separately</span>
+        </label>
+        <p class="dayhead" id="satHead" hidden>Saturday 26</p>
         <div class="opts" role="group" aria-labelledby="partsLabel">
           <label class="opt" id="optPrep">
             <input type="checkbox" id="cPrep">
@@ -774,6 +786,23 @@ textarea.input{resize:vertical; min-height:78px}
               <span class="opt__t">Can't make it</span>
               <span class="opt__d">Say so anyway, so we don't keep a chair. The nazar will understand.</span>
             </span>
+          </label>
+        </div>
+
+        <p class="dayhead" id="sunHead" hidden>Sunday 27</p>
+        <div class="opts" id="partsSun" role="group" aria-label="Sunday 27" hidden>
+          <label class="opt" id="optPrep2">
+            <input type="checkbox" id="cPrep2">
+            <span><span class="opt__t">Dress the house</span><span class="opt__d">12:00–14:00 · applying, not booking</span></span>
+            <span class="opt__x">Apply</span>
+          </label>
+          <label class="opt" id="optZoo2">
+            <input type="checkbox" id="cZoo2">
+            <span><span class="opt__t">Blijdorp</span><span class="opt__d">15:00–18:00 · meet at the exhibit</span></span>
+          </label>
+          <label class="opt" id="optParty2">
+            <input type="checkbox" id="cParty2">
+            <span><span class="opt__t">The party</span><span class="opt__d">19:30 till late · Noordvestsingel 81</span></span>
           </label>
         </div>
 
@@ -953,24 +982,37 @@ function pick(name){
   return r ? r.value : null;
 }
 
+function splitDays(){ return !PARTY.decided && (pick('dt') || 'Either') === 'Either' && el('cDiff').checked; }
+
 function compose(){
   var name = el('name').value.trim();
   var chosen = Object.keys(ACTS).filter(function(k){ return el(ACTS[k].id).checked; });
+  var chosen2 = Object.keys(ACTS).filter(function(k){ return el(ACTS[k].id + '2').checked; });
   var note0 = el('note').value.trim().slice(0,400);
   if(name && el('cNo').checked){
     var out = [name + ' — can’t make Sadaf’s 30th, sorry 🐚'];
     if(note0) out.push('Note: ' + note0);
     return out.join('\n');
   }
-  if(!name || !chosen.length) return null;
+  var split = splitDays();
+  if(!name || (!chosen.length && !(split && chosen2.length))) return null;
 
   var lines = [];
   lines.push(name + ' — in for Sadaf’s 30th ✨');
-  if(!PARTY.decided) lines.push('Date: ' + (pick('dt') || 'Either') + ' works for me');
-  lines.push('Coming to:');
-  chosen.forEach(function(k){ lines.push('  • ' + ACTS[k].line); });
+  if(split){
+    lines.push('Date: either works for me, but my days differ');
+    lines.push('Sat 26:');
+    if(chosen.length) chosen.forEach(function(k){ lines.push('  • ' + ACTS[k].line); }); else lines.push('  • not coming Saturday');
+    lines.push('Sun 27:');
+    if(chosen2.length) chosen2.forEach(function(k){ lines.push('  • ' + ACTS[k].line); }); else lines.push('  • not coming Sunday');
+  }else{
+    if(!PARTY.decided) lines.push('Date: ' + (pick('dt') || 'Either') + ' works for me');
+    lines.push('Coming to:');
+    chosen.forEach(function(k){ lines.push('  • ' + ACTS[k].line); });
+  }
 
-  var tk = el('cZoo').checked ? pick('tk') : null;
+  var zoo = el('cZoo').checked || (split && el('cZoo2').checked);
+  var tk = zoo ? pick('tk') : null;
   if(tk) lines.push('Zoo ticket: ' + tk);
 
   if(el('cPlus').checked){
@@ -986,18 +1028,21 @@ function compose(){
 
 function refresh(){
   var no = el('cNo').checked;
+  var either = !PARTY.decided && (pick('dt') || 'Either') === 'Either';
+  var split = splitDays();
   /* option chrome */
-  ['optPrep','optZoo','optParty'].forEach(function(o,i){
-    var box = [el('cPrep'), el('cZoo'), el('cParty')][i];
-    el(o).classList.toggle('is-on', box.checked);
-  });
-  el('optNo').classList.toggle('is-on', no);
-  if(!PARTY.decided) el('dateField').hidden = no;
-  el('plusField').hidden = no;
-  document.querySelectorAll('.trio .opt, .tickets .opt').forEach(function(o){
+  document.querySelectorAll('.opt').forEach(function(o){
     o.classList.toggle('is-on', o.querySelector('input').checked);
   });
-  el('tickets').hidden = no || !el('cZoo').checked;
+  if(!PARTY.decided) el('dateField').hidden = no;
+  el('plusField').hidden = no;
+  /* the per-day split only makes sense for "Either" */
+  el('diffRow').hidden = no || !either;
+  el('satHead').hidden = !split;
+  el('sunHead').hidden = !split;
+  el('partsSun').hidden = !split;
+  el('optNo').hidden = split;
+  el('tickets').hidden = no || !(el('cZoo').checked || (split && el('cZoo2').checked));
   el('optPlus').classList.toggle('is-on', el('cPlus').checked);
   el('plusName').hidden = !el('cPlus').checked;
 
@@ -1017,7 +1062,7 @@ function refresh(){
   return text;
 }
 
-document.querySelectorAll('#name, #note, #cPrep, #cZoo, #cParty, #cNo, #cPlus, #plusName, input[name="dt"], input[name="tk"]')
+document.querySelectorAll('#name, #note, #cPrep, #cZoo, #cParty, #cPrep2, #cZoo2, #cParty2, #cDiff, #cNo, #cPlus, #plusName, input[name="dt"], input[name="tk"]')
   .forEach(function(i){
     i.addEventListener('input', refresh);
     i.addEventListener('change', refresh);
@@ -1026,13 +1071,13 @@ document.querySelectorAll('#name, #note, #cPrep, #cZoo, #cParty, #cNo, #cPlus, #
 el('cNo').addEventListener('change', function(){
   if(el('cNo').checked){ ['cPrep','cZoo','cParty','cPlus'].forEach(function(id){ el(id).checked = false; }); refresh(); }
 });
-['cPrep','cZoo','cParty'].forEach(function(id){
+['cPrep','cZoo','cParty','cPrep2','cZoo2','cParty2'].forEach(function(id){
   el(id).addEventListener('change', function(){ if(el(id).checked && el('cNo').checked){ el('cNo').checked = false; refresh(); } });
 });
 
 function nudge(){
   var noName = !el('name').value.trim();
-  el('msg').textContent = noName ? 'Add your name first, so we know whose message this is.' : 'Tick at least one part of the day, or “Can’t make it”.';
+  el('msg').textContent = noName ? 'Add your name first, so we know whose message this is.' : 'Tick at least one part of the day (on either day), or “Can’t make it”.';
   (noName ? el('name') : el('cParty')).focus();
 }
 
