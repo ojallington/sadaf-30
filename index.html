@@ -348,6 +348,8 @@ textarea.input{resize:vertical; min-height:78px}
 }
 .opt:hover{background:#FFF6E8}
 .opt.is-on{border-color:#3E1663; background:rgba(62,22,99,.075)}
+.opt--no{margin-top:6px; border-style:dashed}
+.opt--no.is-on{border-color:#8A2E5E; background:rgba(138,46,94,.08)}
 .opt input{accent-color:#3E1663; width:18px; height:18px; margin:3px 0 0; flex:none}
 .opt > span:not(.opt__x){flex:1 1 auto; min-width:0}
 .opt__t{display:block; font-weight:600; font-size:15.5px}
@@ -765,6 +767,14 @@ textarea.input{resize:vertical; min-height:78px}
               <span class="opt__d">19:30 till late · Noordvestsingel 81 · from 18:45 if you're "just coming back for a drink" from the zoo</span>
             </span>
           </label>
+
+          <label class="opt opt--no" id="optNo">
+            <input type="checkbox" id="cNo">
+            <span>
+              <span class="opt__t">Can't make it</span>
+              <span class="opt__d">Say so anyway, so we don't keep a chair. The nazar will understand.</span>
+            </span>
+          </label>
         </div>
 
         <div class="tickets" id="tickets" hidden>
@@ -776,7 +786,7 @@ textarea.input{resize:vertical; min-height:78px}
         </div>
       </div>
 
-      <div class="field">
+      <div class="field" id="plusField">
         <span class="field__label">Bringing someone?</span>
         <div class="opts">
           <label class="opt" id="optPlus">
@@ -802,7 +812,7 @@ textarea.input{resize:vertical; min-height:78px}
           <p class="draft__t">Your message</p>
           <p class="draft__t" id="stamp"></p>
         </div>
-        <p class="draft__box" id="draft"><em>Fill in your name and tick a part of the day — your message appears here, already written.</em></p>
+        <p class="draft__box" id="draft"><em>Fill in your name and tick a part of the day (or "Can't make it") — your message appears here, already written.</em></p>
         <div class="send-row">
           <button class="btn btn--wa" id="send">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.22 8.22 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.41a8.19 8.19 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.84-.2-.49-.4-.42-.56-.43h-.47c-.16 0-.43.06-.65.31-.22.25-.85.83-.85 2.03s.87 2.35.99 2.51c.12.17 1.72 2.62 4.16 3.67.58.25 1.03.4 1.39.51.58.19 1.11.16 1.53.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
@@ -946,6 +956,12 @@ function pick(name){
 function compose(){
   var name = el('name').value.trim();
   var chosen = Object.keys(ACTS).filter(function(k){ return el(ACTS[k].id).checked; });
+  var note0 = el('note').value.trim().slice(0,400);
+  if(name && el('cNo').checked){
+    var out = [name + ' — can’t make Sadaf’s 30th, sorry 🐚'];
+    if(note0) out.push('Note: ' + note0);
+    return out.join('\n');
+  }
   if(!name || !chosen.length) return null;
 
   var lines = [];
@@ -969,15 +985,19 @@ function compose(){
 }
 
 function refresh(){
+  var no = el('cNo').checked;
   /* option chrome */
   ['optPrep','optZoo','optParty'].forEach(function(o,i){
     var box = [el('cPrep'), el('cZoo'), el('cParty')][i];
     el(o).classList.toggle('is-on', box.checked);
   });
+  el('optNo').classList.toggle('is-on', no);
+  if(!PARTY.decided) el('dateField').hidden = no;
+  el('plusField').hidden = no;
   document.querySelectorAll('.trio .opt, .tickets .opt').forEach(function(o){
     o.classList.toggle('is-on', o.querySelector('input').checked);
   });
-  el('tickets').hidden = !el('cZoo').checked;
+  el('tickets').hidden = no || !el('cZoo').checked;
   el('optPlus').classList.toggle('is-on', el('cPlus').checked);
   el('plusName').hidden = !el('cPlus').checked;
 
@@ -989,7 +1009,7 @@ function refresh(){
     el('copy').classList.remove('is-idle');
     el('stamp').textContent = text.length + ' characters';
   }else{
-    box.innerHTML = '<em>Fill in your name and tick a part of the day — your message appears here, already written.</em>';
+    box.innerHTML = '<em>Fill in your name and tick a part of the day (or "Can’t make it") — your message appears here, already written.</em>';
     el('send').classList.add('is-idle');
     el('copy').classList.add('is-idle');
     el('stamp').textContent = '';
@@ -997,15 +1017,22 @@ function refresh(){
   return text;
 }
 
-document.querySelectorAll('#name, #note, #cPrep, #cZoo, #cParty, #cPlus, #plusName, input[name="dt"], input[name="tk"]')
+document.querySelectorAll('#name, #note, #cPrep, #cZoo, #cParty, #cNo, #cPlus, #plusName, input[name="dt"], input[name="tk"]')
   .forEach(function(i){
     i.addEventListener('input', refresh);
     i.addEventListener('change', refresh);
   });
+/* "can't make it" and the parts of the day are mutually exclusive */
+el('cNo').addEventListener('change', function(){
+  if(el('cNo').checked){ ['cPrep','cZoo','cParty','cPlus'].forEach(function(id){ el(id).checked = false; }); refresh(); }
+});
+['cPrep','cZoo','cParty'].forEach(function(id){
+  el(id).addEventListener('change', function(){ if(el(id).checked && el('cNo').checked){ el('cNo').checked = false; refresh(); } });
+});
 
 function nudge(){
   var noName = !el('name').value.trim();
-  el('msg').textContent = noName ? 'Add your name first, so we know whose message this is.' : 'Tick at least one part of the day.';
+  el('msg').textContent = noName ? 'Add your name first, so we know whose message this is.' : 'Tick at least one part of the day, or “Can’t make it”.';
   (noName ? el('name') : el('cParty')).focus();
 }
 
